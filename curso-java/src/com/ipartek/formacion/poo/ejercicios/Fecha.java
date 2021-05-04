@@ -25,16 +25,24 @@ public class Fecha {
 	private int dia;
 	private int mes;
 	private int ano;
+	private boolean fechaCorrecta = true;
+
+	public Fecha() {
+
+	}
 
 	public Fecha(int dia, int mes, int ano) {
+		setMes(mes); // primero el mes para tenerlo disponible despues
 		setDia(dia);
-		setMes(mes);
 		setAno(ano);
 	}
 
 	@Override
 	public String toString() {
-		return "Fecha [dia=" + dia + ", mes=" + mes + ", ano=" + ano + "]";
+		// mostrar las fechas de la forma dd-mm-aaaa
+		String str = "%02d-%02d-%02d";
+		str = str.format(str, dia, mes, ano);
+		return str;
 	}
 
 	public int getDia() {
@@ -61,17 +69,52 @@ public class Fecha {
 		this.ano = ano;
 	}
 
-	public Fecha() {
-
-	}
-
 	public boolean fechaCorrecta() {
-		return false;
 
+		// check año
+		if (getAno() <= 1 || getAno() > 3000)
+			return false;
+
+		// check mes
+		if (getMes() < 1 || getMes() > 12)
+			return false;
+		// check dia
+		int diasMes = 0;
+		switch (getMes()) {
+		case 2:
+			diasMes = 28;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			diasMes = 30;
+			break;
+		default:
+			diasMes = 31;
+			break;
+		}
+		if (diasMes == 28 && esBisiesto())
+			diasMes++;
+		if (dia < 1 || dia > diasMes)
+			return false;
+		return true;
 	}
 
-	private boolean esBisiesto() {
-		return false;
+	public boolean esBisiesto() {
+		return (ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0);
+	}
+
+	public void diaSiguiente() {
+		dia++;
+		if (fechaCorrecta() == false) {
+			mes++;
+			dia = 1;
+			if (fechaCorrecta() == false) {
+				ano++;
+				mes = 1;
+			}
+		}
 
 	}
 
