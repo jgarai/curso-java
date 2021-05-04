@@ -19,6 +19,12 @@ public class Empleado {
 	private Double irpf;
 	private Boolean estaCasado;
 	private Integer numeroHijos;
+	
+	public Empleado() {}
+	
+	public Empleado(String nif) {
+		setNif(nif);
+	}
 
 	public Empleado(String nif, String nombre, Double sueldo, Integer horasExtra, Double irpf, Boolean estaCasado,
 			Integer numeroHijos) {
@@ -158,8 +164,16 @@ public class Empleado {
 
 	@Override
 	public String toString() {
-		return "Empleado [nif=" + nif + ", nombre=" + nombre + ", sueldo=" + sueldo + ", horasExtra=" + horasExtra
-				+ ", irpf=" + irpf + ", estaCasado=" + estaCasado + ", numeroHijos=" + numeroHijos + "]";
-	}
+
+		String Template = "";
+		Template += Template.format("%s %s\n", getNif(), getNombre() );
+		Template += Template.format("Sueldo Base: %s\n", getSueldo());
+		Template += Template.format("Horas Extras: %s\n" , getHorasExtra());
+		Template += Template.format("tipo IRPF: %s\n" , getIrpf());
+		Template += Template.format("Casado: %s\n" , getEstaCasado());
+		Template += Template.format("Numero de Hijos: %s\n" , getNumeroHijos());
+	
+		return Template;
+		}
 
 }
