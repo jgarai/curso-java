@@ -15,7 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Window2 {
 
-	private static final int DISPLAY_LENGHT = 7;
+	private static final int DISPLAY_LENGHT = 8;
 	private JFrame frame;
 	private String left = "0", sign = "", right = "0";
 	private Boolean isNegative = false;
@@ -150,21 +150,7 @@ public class Window2 {
 		frame.getContentPane().add(btnSign);
 
 		JButton btn0 = new JButton("0");
-		// btn0.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent e) {
-		// String key = "0";
-		// if (getRight().length() < DISPLAY_LENGHT) {
-		// setRight(getRight() + key);
-		// setRight(String.valueOf(Integer.parseInt(getRight())));
-		//
-		// setDisplay();
-		// }
-		// if ((Integer.parseInt(getRight())) == 0) {
-		// setRight("0");
-		// setDisplay();
-		// }
-		// }
-		// });
+
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String key = "0";
