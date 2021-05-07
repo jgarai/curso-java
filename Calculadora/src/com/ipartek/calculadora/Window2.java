@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Window2 {
 
-	private static final int DISPLAY_LENGHT = 8;
+	private static final int DISPLAY_LENGHT = 12;
 	private JFrame frame;
 	private String left = "0", operation = "", right = "0";
 	private Boolean isNegative = false;
@@ -99,21 +101,10 @@ public class Window2 {
 			display.setText(str);
 		}
 		buttonWitchGetFocus.requestFocus();
-
 	}
 
-	private void addDigit(String key) {
-		if (getRight().length() < DISPLAY_LENGHT) {
-			afterOperation = false;
-			if (afterEqual == true) {
-				setRight("0");
-				afterEqual = false;
-			}
-			setRight(getRight() + key);
-			setRight(String.valueOf(Integer.parseInt(getRight()))); // remove 0 before
-			setDisplay();
-
-		}
+	public void showError() {
+		display.setText("Error");
 	}
 
 	private void addDigit(char key) {
@@ -124,7 +115,9 @@ public class Window2 {
 				afterEqual = false;
 			}
 			setRight(getRight() + key);
-			setRight(String.valueOf(Integer.parseInt(getRight()))); // remove 0 before
+			// System.out.println(getRight());
+			if (key != '.')
+				setRight(new BigDecimal(getRight()).toString()); // remove 0 before
 			setDisplay();
 
 		}
@@ -160,6 +153,11 @@ public class Window2 {
 		btnGetFocus.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
+//				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+//					System.out.println("Pressed");
+//					// doOperation();
+//				}
+
 				char key = e.getKeyChar();
 				switch (key) {
 				case '1':
@@ -172,6 +170,7 @@ public class Window2 {
 				case '8':
 				case '9':
 				case '0':
+				case '.':
 					addDigit(key);
 					break;
 				case '+':
@@ -179,9 +178,6 @@ public class Window2 {
 				case '*':
 				case '/':
 					addOperation(key);
-					break;
-				case '\n':
-					doOperation();
 					break;
 				default:
 					break;
@@ -206,14 +202,14 @@ public class Window2 {
 		JButton btnSign = new JButton("-");
 		btnSign.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer i = Math.abs(Integer.parseInt(getRight()));
+				BigDecimal bd = new BigDecimal(getRight()).abs();
 				if (isNegative == false) {
 					isNegative = true;
-					i = i * -1;
+					bd = bd.negate();
 				} else {
 					isNegative = false;
 				}
-				setRight(String.valueOf(i));
+				setRight(bd.toString());
 				setDisplay();
 			}
 		});
@@ -222,20 +218,22 @@ public class Window2 {
 		frame.getContentPane().add(btnSign);
 
 		JButton btn0 = new JButton("0");
-
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "0";
-				addDigit(key);
+				addDigit('0');
 			}
 		});
 		btn0.setBounds(74, 280, 48, 40);
 		frame.getContentPane().add(btn0);
 
-		JButton btnColon = new JButton(",");
-		btnColon.setEnabled(false);
-		btnColon.setBounds(132, 280, 48, 40);
-		frame.getContentPane().add(btnColon);
+		JButton btnDecimal = new JButton(".");
+		btnDecimal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addDigit('.');
+			}
+		});
+		btnDecimal.setBounds(132, 280, 48, 40);
+		frame.getContentPane().add(btnDecimal);
 
 		JButton btnEquals = new JButton("=");
 		btnEquals.setBackground(Color.GRAY);
@@ -243,7 +241,6 @@ public class Window2 {
 			public void actionPerformed(ActionEvent e) {
 				doOperation();
 			}
-
 		});
 		btnEquals.setBounds(190, 280, 48, 40);
 		frame.getContentPane().add(btnEquals);
@@ -252,8 +249,7 @@ public class Window2 {
 
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "1";
-				addDigit(key);
+				addDigit('1');
 			}
 		});
 		btn1.setBounds(16, 229, 48, 40);
@@ -262,8 +258,7 @@ public class Window2 {
 		JButton btn4 = new JButton("4");
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "4";
-				addDigit(key);
+				addDigit('4');
 			}
 		});
 		btn4.setBounds(16, 178, 48, 40);
@@ -272,8 +267,7 @@ public class Window2 {
 		JButton btn7 = new JButton("7");
 		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "7";
-				addDigit(key);
+				addDigit('7');
 			}
 		});
 		btn7.setBounds(16, 127, 48, 40);
@@ -282,8 +276,7 @@ public class Window2 {
 		JButton btn2 = new JButton("2");
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "2";
-				addDigit(key);
+				addDigit('2');
 			}
 		});
 		btn2.setBounds(74, 229, 48, 40);
@@ -292,8 +285,7 @@ public class Window2 {
 		JButton btn5 = new JButton("5");
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "5";
-				addDigit(key);
+				addDigit('5');
 			}
 		});
 		btn5.setBounds(74, 178, 48, 40);
@@ -302,8 +294,7 @@ public class Window2 {
 		JButton btn8 = new JButton("8");
 		btn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "8";
-				addDigit(key);
+				addDigit('8');
 			}
 		});
 		btn8.setBounds(74, 127, 48, 40);
@@ -312,8 +303,7 @@ public class Window2 {
 		JButton btn3 = new JButton("3");
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "3";
-				addDigit(key);
+				addDigit('3');
 			}
 		});
 		btn3.setBounds(132, 229, 48, 40);
@@ -322,8 +312,7 @@ public class Window2 {
 		JButton btn6 = new JButton("6");
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "6";
-				addDigit(key);
+				addDigit('6');
 			}
 		});
 		btn6.setBounds(132, 178, 48, 40);
@@ -332,8 +321,7 @@ public class Window2 {
 		JButton btn9 = new JButton("9");
 		btn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String key = "9";
-				addDigit(key);
+				addDigit('9');
 			}
 		});
 		btn9.setBounds(132, 127, 48, 40);
@@ -346,7 +334,6 @@ public class Window2 {
 				setOperation("+");
 				addOperation();
 			}
-
 		});
 		btnPlus.setBounds(190, 229, 48, 40);
 		frame.getContentPane().add(btnPlus);
@@ -424,7 +411,6 @@ public class Window2 {
 					setRight("0");
 				}
 				setDisplay();
-
 			}
 		});
 		btnDeleteLast.setBounds(132, 76, 48, 40);
@@ -433,9 +419,9 @@ public class Window2 {
 	}
 
 	private void doOperation() {
-		Integer leftInterno = 0;
-		Integer rightInterno = 0;
-		Integer result = 0;
+		BigDecimal leftInterno = null;
+		BigDecimal rightInterno = null;
+		BigDecimal result = new BigDecimal("0");
 		char operation;
 
 		if (getOperation().length() > 0) {
@@ -443,35 +429,55 @@ public class Window2 {
 		} else
 			return;
 		if (getLeft().length() > 0) {
-			leftInterno = Integer.parseInt(getLeft());
+			leftInterno = new BigDecimal(getLeft());
 		} else
 			return;
 		if (getRight().length() > 0) {
-			rightInterno = Integer.parseInt(getRight());
+			rightInterno = new BigDecimal(getRight());
 		} else
 			return;
 		if (operation == '+') {
-			result = leftInterno + rightInterno;
-			setLeft(getRight());
-			setRight(String.valueOf(result));
+			result = leftInterno.add(rightInterno);
+			if (result.toString().length() >= DISPLAY_LENGHT) {
+				// error
+				System.out.println("Display overflow");
+				return;
+			} else {
+				setLeft(getRight());
+				setRight(result.toString());
+			}
 		}
 		if (operation == '-') {
-			result = leftInterno - rightInterno;
+			result = leftInterno.subtract(rightInterno);
 			setLeft(getRight());
-			setRight(String.valueOf(result));
+			setRight(result.toString());
 		}
 		if (operation == 'X') {
-			result = leftInterno * rightInterno;
-			setLeft(getRight());
-			setRight(String.valueOf(result));
+			result = leftInterno.multiply(rightInterno);
+			if (result.toString().length() >= DISPLAY_LENGHT) {
+				// error
+				// System.out.println("Display overflow");
+				showError();
+				return;
+			} else {
+				setLeft(getRight());
+				setRight(result.toString());
+			}
 		}
 		if (operation == '/') {
-			result = (int) (leftInterno / rightInterno);
+			if (rightInterno.compareTo(BigDecimal.ZERO) == 0) {
+				// error
+				// System.out.println("Divide by zero");
+				showError();
+				return;
+			}
+			result = leftInterno.divide(rightInterno, DISPLAY_LENGHT - 2, RoundingMode.HALF_EVEN);
 			setLeft(getRight());
-			setRight(String.valueOf(result));
+			setRight(result.toString());
 		}
 		afterEqual = true;
 		setDisplay();
 		setOperation("");
 	}
+
 }
