@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,12 +19,13 @@ public class Window2 {
 
 	private static final int DISPLAY_LENGHT = 8;
 	private JFrame frame;
-	private String left = "0", sign = "", right = "0";
+	private String left = "0", operation = "", right = "0";
 	private Boolean isNegative = false;
 	private Boolean afterOperation = false;
 	private Boolean afterEqual = false;
 
-	private JLabel Display;
+	private JLabel display;
+	private JButton buttonWitchGetFocus;
 
 	/**
 	 * Launch the application.
@@ -63,12 +66,16 @@ public class Window2 {
 		this.left = left;
 	}
 
-	public String getSign() {
-		return sign;
+	public String getOperation() {
+		return operation;
 	}
 
-	public void setSign(String sign) {
-		this.sign = sign;
+	public void setOperation(String sign) {
+		this.operation = sign;
+	}
+
+	public void setOperation(char sign) {
+		this.operation = String.valueOf(sign);
 	}
 
 	public String getRight() {
@@ -81,14 +88,18 @@ public class Window2 {
 
 	public void setDisplay() {
 		if (afterOperation == false) {
-			Display.setText(getRight());
+			display.setText(getRight());
+
 		}
+		buttonWitchGetFocus.requestFocus();
 	}
 
 	public void setDisplay(String str) {
 		if (afterOperation == false) {
-			Display.setText(str);
+			display.setText(str);
 		}
+		buttonWitchGetFocus.requestFocus();
+
 	}
 
 	private void addDigit(String key) {
@@ -101,6 +112,21 @@ public class Window2 {
 			setRight(getRight() + key);
 			setRight(String.valueOf(Integer.parseInt(getRight()))); // remove 0 before
 			setDisplay();
+
+		}
+	}
+
+	private void addDigit(char key) {
+		if (getRight().length() < DISPLAY_LENGHT) {
+			afterOperation = false;
+			if (afterEqual == true) {
+				setRight("0");
+				afterEqual = false;
+			}
+			setRight(getRight() + key);
+			setRight(String.valueOf(Integer.parseInt(getRight()))); // remove 0 before
+			setDisplay();
+
 		}
 	}
 
@@ -109,6 +135,13 @@ public class Window2 {
 		setRight("0");
 		afterOperation = true;
 		setDisplay();
+		buttonWitchGetFocus.requestFocus();
+
+	}
+
+	private void addOperation(char key) {
+		setOperation(key);
+		addOperation();
 	}
 
 	/**
@@ -121,9 +154,48 @@ public class Window2 {
 		frame.setBounds(100, 100, 260, 376);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		// disable tab
+		JButton btnGetFocus = new JButton("");
+		buttonWitchGetFocus = btnGetFocus;
+		btnGetFocus.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char key = e.getKeyChar();
+				switch (key) {
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+				case '0':
+					addDigit(key);
+					break;
+				case '+':
+				case '-':
+				case '*':
+				case '/':
+					addOperation(key);
+					break;
+				case '\n':
+					doOperation();
+					break;
+				default:
+					break;
+				}
+			}
+		});
+
+		btnGetFocus.setBounds(1, 1, 0, 0);
+		btnGetFocus.setFocusTraversalKeysEnabled(false); // this disable tab funtionality
+		frame.getContentPane().add(btnGetFocus);
 
 		JLabel lblDisplay = new JLabel("0");
-		Display = lblDisplay;
+
+		display = lblDisplay;
 		lblDisplay.setForeground(Color.BLACK);
 		lblDisplay.setBackground(Color.LIGHT_GRAY);
 		lblDisplay.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -166,49 +238,12 @@ public class Window2 {
 		frame.getContentPane().add(btnColon);
 
 		JButton btnEquals = new JButton("=");
+		btnEquals.setBackground(Color.GRAY);
 		btnEquals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer leftInterno = 0;
-				Integer rightInterno = 0;
-				Integer result = 0;
-				char operation;
-
-				if (getSign().length() > 0) {
-					operation = getSign().charAt(0);
-				} else
-					return;
-				if (getLeft().length() > 0) {
-					leftInterno = Integer.parseInt(getLeft());
-				} else
-					return;
-				if (getRight().length() > 0) {
-					rightInterno = Integer.parseInt(getRight());
-				} else
-					return;
-				if (operation == '+') {
-					result = leftInterno + rightInterno;
-					setLeft(getRight());
-					setRight(String.valueOf(result));
-				}
-				if (operation == '-') {
-					result = leftInterno - rightInterno;
-					setLeft(getRight());
-					setRight(String.valueOf(result));
-				}
-				if (operation == 'X') {
-					result = leftInterno * rightInterno;
-					setLeft(getRight());
-					setRight(String.valueOf(result));
-				}
-				if (operation == '/') {
-					result = (int) (leftInterno / rightInterno);
-					setLeft(getRight());
-					setRight(String.valueOf(result));
-				}
-				afterEqual = true;
-				setDisplay();
-				setSign("");
+				doOperation();
 			}
+
 		});
 		btnEquals.setBounds(190, 280, 48, 40);
 		frame.getContentPane().add(btnEquals);
@@ -305,9 +340,10 @@ public class Window2 {
 		frame.getContentPane().add(btn9);
 
 		JButton btnPlus = new JButton("+");
+		btnPlus.setBackground(Color.GRAY);
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setSign("+");
+				setOperation("+");
 				addOperation();
 			}
 
@@ -316,10 +352,11 @@ public class Window2 {
 		frame.getContentPane().add(btnPlus);
 
 		JButton btnSubtract = new JButton("-");
+		btnSubtract.setBackground(Color.GRAY);
 		btnSubtract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setLeft(getRight()); // move from right to left
-				setSign("-");
+				setOperation("-");
 				addOperation();
 			}
 		});
@@ -327,10 +364,11 @@ public class Window2 {
 		frame.getContentPane().add(btnSubtract);
 
 		JButton btnMultiplication = new JButton("X");
+		btnMultiplication.setBackground(Color.GRAY);
 		btnMultiplication.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setLeft(getRight()); // move from right to left
-				setSign("X");
+				setOperation("X");
 				addOperation();
 			}
 		});
@@ -338,10 +376,11 @@ public class Window2 {
 		frame.getContentPane().add(btnMultiplication);
 
 		JButton btnDivision = new JButton("/");
+		btnDivision.setBackground(Color.GRAY);
 		btnDivision.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setLeft(getRight()); // move from right to left
-				setSign("/");
+				setOperation("/");
 				addOperation();
 			}
 		});
@@ -349,6 +388,7 @@ public class Window2 {
 		frame.getContentPane().add(btnDivision);
 
 		JButton btnClearAll = new JButton("C");
+		btnClearAll.setBackground(Color.ORANGE);
 		btnClearAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setRight("0");
@@ -360,6 +400,8 @@ public class Window2 {
 		frame.getContentPane().add(btnClearAll);
 
 		JButton btnClearRight = new JButton("CE");
+
+		btnClearRight.setBackground(Color.ORANGE);
 		btnClearRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setRight("0");
@@ -371,6 +413,7 @@ public class Window2 {
 		frame.getContentPane().add(btnClearRight);
 
 		JButton btnDeleteLast = new JButton("<[]");
+		btnDeleteLast.setBackground(Color.ORANGE);
 		btnDeleteLast.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (getRight().length() > 0) {
@@ -387,5 +430,48 @@ public class Window2 {
 		btnDeleteLast.setBounds(132, 76, 48, 40);
 		frame.getContentPane().add(btnDeleteLast);
 
+	}
+
+	private void doOperation() {
+		Integer leftInterno = 0;
+		Integer rightInterno = 0;
+		Integer result = 0;
+		char operation;
+
+		if (getOperation().length() > 0) {
+			operation = getOperation().charAt(0);
+		} else
+			return;
+		if (getLeft().length() > 0) {
+			leftInterno = Integer.parseInt(getLeft());
+		} else
+			return;
+		if (getRight().length() > 0) {
+			rightInterno = Integer.parseInt(getRight());
+		} else
+			return;
+		if (operation == '+') {
+			result = leftInterno + rightInterno;
+			setLeft(getRight());
+			setRight(String.valueOf(result));
+		}
+		if (operation == '-') {
+			result = leftInterno - rightInterno;
+			setLeft(getRight());
+			setRight(String.valueOf(result));
+		}
+		if (operation == 'X') {
+			result = leftInterno * rightInterno;
+			setLeft(getRight());
+			setRight(String.valueOf(result));
+		}
+		if (operation == '/') {
+			result = (int) (leftInterno / rightInterno);
+			setLeft(getRight());
+			setRight(String.valueOf(result));
+		}
+		afterEqual = true;
+		setDisplay();
+		setOperation("");
 	}
 }
