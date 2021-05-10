@@ -142,24 +142,22 @@ public class Window2 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 260, 376);
+		frame.setBounds(100, 100, 264, 376);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		// disable tab
+		// This button lets have the app focus under control
 		JButton btnGetFocus = new JButton("");
 		buttonWitchGetFocus = btnGetFocus;
 		btnGetFocus.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-//				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-//					System.out.println("Pressed");
-//					// doOperation();
-//				}
-
 				char key = e.getKeyChar();
+				if(key == '*') key = 'X'; // keyboard * to X operator
 				switch (key) {
+				case KeyEvent.VK_ENTER:
+					doOperation();
+					break;
 				case '1':
 				case '2':
 				case '3':
@@ -175,7 +173,7 @@ public class Window2 {
 					break;
 				case '+':
 				case '-':
-				case '*':
+				case 'X':
 				case '/':
 					addOperation(key);
 					break;
@@ -184,13 +182,11 @@ public class Window2 {
 				}
 			}
 		});
-
 		btnGetFocus.setBounds(1, 1, 0, 0);
-		btnGetFocus.setFocusTraversalKeysEnabled(false); // this disable tab funtionality
+		btnGetFocus.setFocusTraversalKeysEnabled(false); // this disable tab functionality
 		frame.getContentPane().add(btnGetFocus);
 
 		JLabel lblDisplay = new JLabel("0");
-
 		display = lblDisplay;
 		lblDisplay.setForeground(Color.BLACK);
 		lblDisplay.setBackground(Color.LIGHT_GRAY);
@@ -216,15 +212,9 @@ public class Window2 {
 		btnSign.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnSign.setBounds(16, 280, 48, 40);
 		frame.getContentPane().add(btnSign);
+		
 
-		JButton btn0 = new JButton("0");
-		btn0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addDigit('0');
-			}
-		});
-		btn0.setBounds(74, 280, 48, 40);
-		frame.getContentPane().add(btn0);
+
 
 		JButton btnDecimal = new JButton(".");
 		btnDecimal.addActionListener(new ActionListener() {
@@ -234,7 +224,8 @@ public class Window2 {
 		});
 		btnDecimal.setBounds(132, 280, 48, 40);
 		frame.getContentPane().add(btnDecimal);
-
+		
+		// the = button
 		JButton btnEquals = new JButton("=");
 		btnEquals.setBackground(Color.GRAY);
 		btnEquals.addActionListener(new ActionListener() {
@@ -244,9 +235,18 @@ public class Window2 {
 		});
 		btnEquals.setBounds(190, 280, 48, 40);
 		frame.getContentPane().add(btnEquals);
+		
+		// Numbers
+		JButton btn0 = new JButton("0");
+		btn0.setBounds(74, 280, 48, 40);
+		frame.getContentPane().add(btn0);
+		btn0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addDigit('0');
+			}
+		});
 
 		JButton btn1 = new JButton("1");
-
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addDigit('1');
@@ -326,7 +326,8 @@ public class Window2 {
 		});
 		btn9.setBounds(132, 127, 48, 40);
 		frame.getContentPane().add(btn9);
-
+		
+		// Operator buttons
 		JButton btnPlus = new JButton("+");
 		btnPlus.setBackground(Color.GRAY);
 		btnPlus.addActionListener(new ActionListener() {
@@ -373,7 +374,8 @@ public class Window2 {
 		});
 		btnDivision.setBounds(190, 76, 48, 40);
 		frame.getContentPane().add(btnDivision);
-
+		
+		// Functionality buttons
 		JButton btnClearAll = new JButton("C");
 		btnClearAll.setBackground(Color.ORANGE);
 		btnClearAll.addActionListener(new ActionListener() {
@@ -439,8 +441,7 @@ public class Window2 {
 		if (operation == '+') {
 			result = leftInterno.add(rightInterno).stripTrailingZeros();
 			if (result.toString().length() >= DISPLAY_LENGHT) {
-				// error
-				System.out.println("Display overflow");
+				// error display overflow
 				return;
 			} else {
 				setLeft(getRight());
@@ -465,8 +466,7 @@ public class Window2 {
 		}
 		if (operation == '/') {
 			if (rightInterno.compareTo(BigDecimal.ZERO) == 0) {
-				// error
-				// System.out.println("Divide by zero");
+				// error divide by zero
 				showError();
 				return;
 			}
