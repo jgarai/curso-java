@@ -437,31 +437,30 @@ public class Window2 {
 		} else
 			return;
 		if (operation == '+') {
-			result = leftInterno.add(rightInterno);
+			result = leftInterno.add(rightInterno).stripTrailingZeros();
 			if (result.toString().length() >= DISPLAY_LENGHT) {
 				// error
 				System.out.println("Display overflow");
 				return;
 			} else {
 				setLeft(getRight());
-				setRight(result.toString());
+				setRight(result.toPlainString());
 			}
 		}
 		if (operation == '-') {
-			result = leftInterno.subtract(rightInterno);
+			result = leftInterno.subtract(rightInterno).stripTrailingZeros();
 			setLeft(getRight());
-			setRight(result.toString());
+			setRight(result.toPlainString());
 		}
 		if (operation == 'X') {
-			result = leftInterno.multiply(rightInterno);
+			result = leftInterno.multiply(rightInterno).stripTrailingZeros();
 			if (result.toString().length() >= DISPLAY_LENGHT) {
 				// error
-				// System.out.println("Display overflow");
 				showError();
 				return;
 			} else {
 				setLeft(getRight());
-				setRight(result.toString());
+				setRight(result.toPlainString());
 			}
 		}
 		if (operation == '/') {
@@ -471,9 +470,9 @@ public class Window2 {
 				showError();
 				return;
 			}
-			result = leftInterno.divide(rightInterno, DISPLAY_LENGHT - 2, RoundingMode.HALF_EVEN);
+			result = leftInterno.divide(rightInterno, DISPLAY_LENGHT - 2, RoundingMode.HALF_EVEN).stripTrailingZeros();
 			setLeft(getRight());
-			setRight(result.toString());
+			setRight(result.toPlainString());
 		}
 		afterEqual = true;
 		setDisplay();
