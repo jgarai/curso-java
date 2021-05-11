@@ -45,10 +45,12 @@ if(request.getParameter("operator") != null && request.getParameter("left") != n
 <form action="" method="POST">
 <input name="left" type="text" value="">
 <input name="right" type="text" value="">
-<select name="operator"><option value="+">+</option>
-  <option value="-">-</option>
-  <option value="*">*</option>
-  <option value="/">/</option></select>
+<select name="operator">
+	<option >+</option>
+  	<option >-</option>
+ 	<option >*</option>
+  	<option >/</option>
+</select>
 
 <input type="submit" value="Submit">
 </form>

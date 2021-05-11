@@ -130,9 +130,7 @@ if (request.getParameter("c") != null ) {
 
 }
 
-	
 %>
-
 
 <form action="" method="POST">
 
@@ -143,33 +141,38 @@ if (request.getParameter("c") != null ) {
  <div class="padding">
 <input name="display" type="text" value="<%= right %>">
 </div>
-<div class="padding">
-<input name="0" type="submit" value="0">
-<input name="1" type="submit" value="1">
-<input name="2" type="submit" value="2">
-<input name="3" type="submit" value="3">
-<input name="4" type="submit" value="4">
-<input name="5" type="submit" value="5">
-<input name="6" type="submit" value="6">
-<input name="7" type="submit" value="7">
-<input name="8" type="submit" value="8">
-<input name="9" type="submit" value="9">
-</div>
-
-<div class="padding"> 
-<input name="add" type="submit" value="+">
-<input name="sub" type="submit" value="-">
-<input name="mul" type="submit" value="*">
-<input name="div" type="submit" value="/">
-<input name="equals" type="submit" value="=">
-</div>
 <div class="padding"> 
 <input name="ce" type="submit" value="ce">
 <input name="c" type="submit" value="c">
-
+<input name="del" type="submit" value="del" class="disabled">
+<input name="div" type="submit" value="/">
+</div>
+<div class="padding">
+<input name="7" type="submit" value="7">
+<input name="8" type="submit" value="8">
+<input name="9" type="submit" value="9">
+<input name="add" type="submit" value="+">
+</div>
+<div class="padding">
+<input name="4" type="submit" value="4">
+<input name="5" type="submit" value="5">
+<input name="6" type="submit" value="6">
+<input name="sub" type="submit" value="-">
 
 </div>
+<div class="padding">
+<input name="1" type="submit" value="1">
+<input name="2" type="submit" value="2">
+<input name="3" type="submit" value="3">
+<input name="mul" type="submit" value="*">
 
+</div>
+<div class="padding">
+<input name="negate" type="submit" value="-" class="disabled">
+<input name="0" type="submit" value="0">
+<input name="colon" type="submit" value="," class="disabled">
+<input name="equals" type="submit" value="=">
+</div>
 
 </form>
 </body>
