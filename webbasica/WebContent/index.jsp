@@ -29,7 +29,7 @@ if(request.getParameter("operator") != null && request.getParameter("left") != n
 			int r = Integer.parseInt(left) * Integer.parseInt(right);
 			result = "" + r;
 		} 
-		if (operator.compareTo("//") == 0){
+		if (operator.compareTo("/") == 0){
 			int r = Integer.parseInt(left) / Integer.parseInt(right);
 			result = "" + r;
 		} 
@@ -48,7 +48,7 @@ if(request.getParameter("operator") != null && request.getParameter("left") != n
 <select name="operator"><option value="+">+</option>
   <option value="-">-</option>
   <option value="*">*</option>
-  <option value="//">/</option></select>
+  <option value="/">/</option></select>
 
 <input type="submit" value="Submit">
 </form>
