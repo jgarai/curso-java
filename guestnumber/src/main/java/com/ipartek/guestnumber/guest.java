@@ -25,10 +25,9 @@ public class guest extends HttpServlet {
 		if (request.getParameter("reset") != null && request.getParameter("reset").equals("true")) {
 			Cookie c = new Cookie("randomnumber", getRandomNumber());
 			response.addCookie(c);
-			request.getRequestDispatcher("/guestV.jsp").forward(request, response);
 		}
 
-		// find the cookie with our random number
+		// I look for the cookie with the random number
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie c : cookies) {
@@ -38,13 +37,13 @@ public class guest extends HttpServlet {
 				}
 			}
 		}
-		// if no cookie, one is sent to the browser with a randon number within
+		// if there is no cookie, one is sent to the browser with a randon number within
 		if (valorCookie == null) {
 			Cookie c = new Cookie("randomnumber", getRandomNumber());
 			c.setMaxAge(60 * 60 * 24);
 			response.addCookie(c);
 		}
-		// if we have a cookie
+		// if I have a cookie
 		if (valorCookie != null) {
 			Integer rn = Integer.valueOf(valorCookie);
 			Integer bet = null;
@@ -63,13 +62,12 @@ public class guest extends HttpServlet {
 				}
 			}
 		}
-		// How many trys?
+		// How many tries you played?
 		try {
 			Integer trys = Integer.valueOf(request.getParameter("count"));
-			request.setAttribute("trys", trys + 1);
+			request.setAttribute("tries", trys + 1);
 		} catch (NumberFormatException ex) {
-			request.setAttribute("trys", 1);
-			request.getRequestDispatcher("/guestV.jsp").forward(request, response);
+			request.setAttribute("tries", 1);
 		}
 
 		// finally data is sent to myself

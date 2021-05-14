@@ -13,10 +13,10 @@
 <p>${message}</p>
 <form action="guest" method="post">
 		<input type="number" name="bet" ${disabled} autofocus >
-		<input type="hidden" name="count" value="${trys}" >
+		<input type="hidden" name="count" value="${tries}" >
 		<button ${disabled}>Aceptar</button>
 </form>
-<p>Número de intentos: ${trys }</p>
+<p>Número de intentos: ${tries }</p>
 <h2><a href="guest?reset=true">Reinicia el juego!</a></h2>
 </div>
 </body>
