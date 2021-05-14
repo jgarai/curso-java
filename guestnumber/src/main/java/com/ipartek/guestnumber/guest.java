@@ -3,12 +3,22 @@ package com.ipartek.guestnumber;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//import java.io.IOException;
+//import java.util.concurrent.ThreadLocalRandom;
+//
+//import jakarta.servlet.ServletException;
+//import jakarta.servlet.annotation.WebServlet;
+//import jakarta.servlet.http.Cookie;
+//import jakarta.servlet.http.HttpServlet;
+//import jakarta.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/guest")
 public class guest extends HttpServlet {
@@ -19,7 +29,7 @@ public class guest extends HttpServlet {
 
 		String valorCookie = null;
 		request.setAttribute("message", "Introduce número");
-		request.setAttribute("trys", 0);
+		request.setAttribute("tries", 0);
 
 		// re-start game updating the cookie to new value
 		if (request.getParameter("reset") != null && request.getParameter("reset").equals("true")) {
@@ -43,7 +53,7 @@ public class guest extends HttpServlet {
 			c.setMaxAge(60 * 60 * 24);
 			response.addCookie(c);
 		}
-		// if I have a cookie
+		// if I get the cookie...
 		if (valorCookie != null) {
 			Integer rn = Integer.valueOf(valorCookie);
 			Integer bet = null;
