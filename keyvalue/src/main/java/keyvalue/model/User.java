@@ -1,4 +1,4 @@
-package keyvalue.entidades;
+package keyvalue.model;
 
 public class User {
 	private Integer id;
@@ -50,6 +50,10 @@ public class User {
 		setId(id);
 		setEmail(email);
 		setPassword(password);
+	}
+
+	public User() {
+
 	}
 
 	public Integer getId() {

@@ -7,15 +7,20 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import keyvalue.entidades.User;
+import javax.servlet.http.HttpServlet;
 
-public class DaoUser {
+import keyvalue.model.User;
+
+public class DaoUser extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
 	private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\git\\curso-java\\keyvalue\\src\\main\\webapp\\WEB-INF\\db.sqlite3";
 	private static final String USUARIO = "";
 	private static final String PASSWORD = "";
 
 	private static final String SQL_SELECT = "SELECT id, email, password FROM users";
 	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id = ?";
+	private static final String SQL_SELECT_EMAIL = SQL_SELECT + " WHERE email = ?";
 	private static final String SQL_INSERT = "INSERT INTO users (email, password) VALUES (?,?)";
 	private static final String SQL_UPDATE = "UPDATE users SET email = ?, password = ? WHERE id = ?";
 	private static final String SQL_DELETE = "DELETE FROM users WHERE id = ?";
@@ -30,7 +35,7 @@ public class DaoUser {
 
 	public static ArrayList<User> getUsers() {
 
-		try (Connection con = connectToDB();
+		try (Connection con = connectDB();
 				PreparedStatement ps = con.prepareStatement(SQL_SELECT);
 				ResultSet rs = ps.executeQuery();) {
 			ArrayList<User> users = new ArrayList<>();
@@ -47,7 +52,7 @@ public class DaoUser {
 	}
 
 	public static User getUserById(Integer id) {
-		try (Connection con = connectToDB(); PreparedStatement ps = con.prepareStatement(SQL_SELECT_ID);) {
+		try (Connection con = connectDB(); PreparedStatement ps = con.prepareStatement(SQL_SELECT_ID);) {
 
 			ps.setInt(1, id);
 
@@ -66,7 +71,7 @@ public class DaoUser {
 	}
 
 	public static User getUserByEmail(String email) {
-		try (Connection con = connectToDB(); PreparedStatement ps = con.prepareStatement(SQL_SELECT_ID);) {
+		try (Connection con = connectDB(); PreparedStatement ps = con.prepareStatement(SQL_SELECT_EMAIL);) {
 
 			ps.setString(1, email);
 
@@ -85,7 +90,7 @@ public class DaoUser {
 	}
 
 	public static User insert(User user) {
-		try (Connection con = connectToDB();
+		try (Connection con = connectDB();
 				PreparedStatement ps = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);) {
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getPassword());
@@ -104,7 +109,32 @@ public class DaoUser {
 		}
 	}
 
-	private static Connection connectToDB() {
+	public static User update(User user) {
+		try (Connection con = connectDB(); PreparedStatement ps = con.prepareStatement(SQL_UPDATE);) {
+			ps.setString(1, user.getEmail());
+			ps.setString(2, user.getPassword());
+			ps.setInt(3, user.getId());
+
+			ps.executeUpdate();
+
+			return user;
+		} catch (Exception e) {
+			throw new AccesoDatosException("La operación de modificar user ha fallado", e);
+		}
+	}
+
+	public static void delete(Integer id) {
+		try (Connection con = connectDB(); PreparedStatement ps = con.prepareStatement(SQL_DELETE);) {
+			ps.setInt(1, id);
+
+			ps.executeUpdate();
+		} catch (Exception e) {
+			throw new AccesoDatosException("La operación de borrar user ha fallado", e);
+		}
+	}
+
+	private static Connection connectDB() {
+
 		Connection con = null;
 
 		try {

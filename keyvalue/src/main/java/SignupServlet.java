@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import keyvalue.dao.DaoUser;
-import keyvalue.entidades.User;
+import keyvalue.model.User;
 
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
@@ -16,7 +16,8 @@ public class SignupServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("signup.jsp");
+		// response.sendRedirect("signup.jsp");
+		request.getRequestDispatcher("/signup.jsp").forward(request, response);
 
 	}
 
@@ -26,20 +27,16 @@ public class SignupServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		// insert into data base
+		// insert into database
 		try {
 			User u = new User(null, email, password);
 			DaoUser.insert(u);
 		} catch (Exception e) {
-
-			System.out.println(e);
-
+			request.setAttribute("error", "Error insertando el usuario");
+			request.getRequestDispatcher("/signup.jsp").forward(request, response);
 		}
 
-		request.getSession().setAttribute("email", email);
-		request.getSession().setAttribute("password", password);
-
-		response.sendRedirect("home.jsp");
+		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
 
 }

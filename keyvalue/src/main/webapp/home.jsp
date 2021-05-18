@@ -8,5 +8,6 @@
     
     ${email }
     ${password }
+    ${user.email }
     
 <%@ include file="/includes/footer.jspf" %>

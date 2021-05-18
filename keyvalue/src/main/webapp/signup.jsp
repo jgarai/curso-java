@@ -16,6 +16,9 @@
 			<input id="password" type="password" name="password" />
 		</div>
 		<div>
+		${error }
+		</div>
+		<div>
 			<button>Send</button>
 		
 		</div>

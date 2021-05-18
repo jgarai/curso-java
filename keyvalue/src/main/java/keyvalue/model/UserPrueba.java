@@ -1,4 +1,4 @@
-package keyvalue.entidades;
+package keyvalue.model;
 
 public class UserPrueba {
 
