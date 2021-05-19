@@ -22,25 +22,26 @@
 	<div class="container">
 		<header
 			class="d-flex flex-wrap  justify-content-md-between py-3 mb-4 border-bottom">
+
 			<ul class="nav col-12 col-md-auto mb-2  mb-md-0">
 				<li><a href="home" class="nav-link px-2 link-secondary">Home</a></li>
 			</ul>
 			<div class="col-md-5 text-end">
-			<c:choose>
-			<c:when test="${user == null }">
-				<button onclick="location.href='signin'" type="button"
-					class="btn btn-outline-primary me-2">Sign In</button>
-				<button onclick="location.href='signup'" type="button"
-					class="btn btn-primary">Sign-up</button>
-			</c:when>
-			<c:otherwise >
-			<span>Bienvenido ${user.email }</span>
-				<button onclick="location.href='dashboard'" type="button"
-					class="btn btn-outline-primary me-2">Dashboard</button>
-				<button onclick="location.href='signup'" type="button"
-					class="btn btn-primary">Sign Out</button>
-			</c:otherwise>
-			</c:choose>
+				<c:choose>
+					<c:when test="${user == null }">
+						<button onclick="location.href='signin'" type="button"
+							class="btn btn-outline-primary me-2">Sign In</button>
+						<button onclick="location.href='signup'" type="button"
+							class="btn btn-primary">Sign-up</button>
+					</c:when>
+					<c:otherwise>
+						<span>Bienvenido ${user.email }</span>
+						<button onclick="location.href='dashboard'" type="button"
+							class="btn btn-outline-primary me-2">Dashboard</button>
+						<button onclick="location.href='signup'" type="button"
+							class="btn btn-primary">Sign Out</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</header>
 	</div>
@@ -48,11 +49,11 @@
 
 
 
-<!-- 	<ul> -->
-<!-- 		<li><a href="home">home / inicio</a></li> -->
-<!-- 		<li><a href="signin">sign in / inciar sesión</a></li> -->
-<!-- 		<li><a href="signup">sign up / registrarse</a></li> -->
-<!-- 		<li><a href="signout">sign out / salir sesión</a></li> -->
-<!-- 		<li><a href="dashboard">dashboard / panel de control</a></li> -->
-<!-- 	</ul> -->
-	
+
+	<!-- 	<ul> -->
+	<!-- 		<li><a href="home">home / inicio</a></li> -->
+	<!-- 		<li><a href="signin">sign in / inciar sesión</a></li> -->
+	<!-- 		<li><a href="signup">sign up / registrarse</a></li> -->
+	<!-- 		<li><a href="signout">sign out / salir sesión</a></li> -->
+	<!-- 		<li><a href="dashboard">dashboard / panel de control</a></li> -->
+	<!-- 	</ul> -->

@@ -4,12 +4,6 @@
 <%@ include file="/includes/header.jspf"%>
 
 <div class="container">
-
-	<h2>Home</h2>
-
-
-	 ${user.email }
-
-</div>
+<h2>message</h2>${error } ${message }</div>
 
 <%@ include file="/includes/footer.jspf"%>

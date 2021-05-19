@@ -29,7 +29,10 @@ public class SignupServlet extends HttpServlet {
 		try {
 			User user = new User(null, email, password);
 			DaoUser.insert(user);
-			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			// request.getRequestDispatcher("/home.jsp").forward(request, response);
+			request.setAttribute("message", "El usuario ha sido creado con exíto.");
+
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("error", "Error insertando el usuario");
 			request.getRequestDispatcher("/signup.jsp").forward(request, response);
