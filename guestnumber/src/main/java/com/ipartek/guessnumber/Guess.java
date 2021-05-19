@@ -1,4 +1,4 @@
-package com.ipartek.guestnumber;
+package com.ipartek.guessnumber;
 
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/guest")
-public class guest extends HttpServlet {
+@WebServlet("/guess")
+public class Guess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
