@@ -14,7 +14,7 @@ import keyvalue.model.User;
 public class DaoUser extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\git\\curso-java\\keyvalue\\src\\main\\webapp\\WEB-INF\\db.sqlite3";
+	private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\git\\curso-java\\keyvalue\\src\\main\\webapp\\WEB-INF\\db.sqlite3?date_string_format=yyyy-MM-dd";
 	private static final String USUARIO = "";
 	private static final String PASSWORD = "";
 

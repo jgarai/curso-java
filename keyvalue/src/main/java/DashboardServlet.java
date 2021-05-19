@@ -17,20 +17,27 @@ public class DashboardServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		HttpSession session = (HttpSession) request.getSession();
+		User user = ((User) session.getAttribute("user"));
+		if (user == null) {
+			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
+		}
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
 		if (user == null) {
 			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
 			request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
-		} else {
+		}
 
+		String DeleteUser = request.getParameter("delete");
+		if (DeleteUser.equals("true")) {
 			try {
 				Integer id = user.getId();
 				DaoUser.delete(id);
@@ -43,6 +50,7 @@ public class DashboardServlet extends HttpServlet {
 				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 
 			}
+
 		}
 
 	}

@@ -16,9 +16,7 @@ public class SignupServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.sendRedirect("signup.jsp");
 		request.getRequestDispatcher("/signup.jsp").forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -29,14 +27,12 @@ public class SignupServlet extends HttpServlet {
 
 		// insert into database
 		try {
-			User u = new User(null, email, password);
-			DaoUser.insert(u);
+			User user = new User(null, email, password);
+			DaoUser.insert(user);
+			request.getRequestDispatcher("/home.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("error", "Error insertando el usuario");
 			request.getRequestDispatcher("/signup.jsp").forward(request, response);
 		}
-
-		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
-
 }

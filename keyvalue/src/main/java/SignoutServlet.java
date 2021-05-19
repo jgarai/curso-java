@@ -14,8 +14,8 @@ public class SignoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getSession().invalidate();
-
-		response.sendRedirect("home.jsp");
+		// request.getRequestDispatcher("/home.jsp").forward(request, response);
+		response.sendRedirect("home");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
