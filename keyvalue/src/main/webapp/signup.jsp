@@ -3,7 +3,7 @@
 
 <%@ include file="/includes/header.jspf"%>
 
-<div class="container">
+<div class="container text-center">
 
 	<h2>Sign up</h2>
 

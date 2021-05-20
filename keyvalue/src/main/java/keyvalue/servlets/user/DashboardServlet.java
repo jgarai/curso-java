@@ -1,3 +1,4 @@
+package keyvalue.servlets.user;
 
 import java.io.IOException;
 
@@ -44,7 +45,9 @@ public class DashboardServlet extends HttpServlet {
 				session.invalidate();
 
 				request.setAttribute("message", "Tu usuario ha sido borrado de la base de datos");
-				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+				request.getRequestDispatcher("/message.jsp").forward(request, response);
+
+				// request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 			} catch (Exception e) {
 				request.setAttribute("error", "Ha habido un error borrando tu usuario");
 				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);

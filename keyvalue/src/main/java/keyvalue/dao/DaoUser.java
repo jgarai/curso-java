@@ -18,11 +18,11 @@ public class DaoUser extends HttpServlet {
 	private static final String USUARIO = "";
 	private static final String PASSWORD = "";
 
-	private static final String SQL_SELECT = "SELECT id, email, password FROM users";
+	private static final String SQL_SELECT = "SELECT id, email, password, name FROM users";
 	private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id = ?";
 	private static final String SQL_SELECT_EMAIL = SQL_SELECT + " WHERE email = ?";
-	private static final String SQL_INSERT = "INSERT INTO users (email, password) VALUES (?,?)";
-	private static final String SQL_UPDATE = "UPDATE users SET email = ?, password = ? WHERE id = ?";
+	private static final String SQL_INSERT = "INSERT INTO users (email, password, name) VALUES (?,?,?)";
+	private static final String SQL_UPDATE = "UPDATE users SET email = ?, password = ?, name = ? WHERE id = ?";
 	private static final String SQL_DELETE = "DELETE FROM users WHERE id = ?";
 
 	static {
@@ -40,7 +40,8 @@ public class DaoUser extends HttpServlet {
 				ResultSet rs = ps.executeQuery();) {
 			ArrayList<User> users = new ArrayList<>();
 			while (rs.next()) {
-				users.add(new User(rs.getInt("id"), rs.getString("email"), rs.getString("password")));
+				users.add(new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"),
+						rs.getString("name")));
 			}
 			return users;
 
@@ -61,7 +62,7 @@ public class DaoUser extends HttpServlet {
 			User user = null;
 
 			if (rs.next()) {
-				user = new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"));
+				user = new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"), rs.getString("name"));
 			}
 
 			return user;
@@ -80,7 +81,7 @@ public class DaoUser extends HttpServlet {
 			User user = null;
 
 			if (rs.next()) {
-				user = new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"));
+				user = new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"), rs.getString("name"));
 			}
 
 			return user;
@@ -94,6 +95,8 @@ public class DaoUser extends HttpServlet {
 				PreparedStatement ps = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);) {
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getPassword());
+
+			ps.setString(3, user.getName());
 
 			ps.executeUpdate();
 

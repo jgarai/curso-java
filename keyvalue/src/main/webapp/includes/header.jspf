@@ -25,6 +25,16 @@
 
 			<ul class="nav col-12 col-md-auto mb-2  mb-md-0">
 				<li><a href="home" class="nav-link px-2 link-secondary">Home</a></li>
+				<c:choose>
+					<c:when test="${user == null }">
+
+					</c:when>
+					<c:otherwise>
+					<span class="nav-link px-2 link-secondary"> | </span>
+					<li><a href="#" class="nav-link px-2 link-secondary">Sets</a>
+		
+					</c:otherwise>
+				</c:choose>
 			</ul>
 			<div class="col-md-5 text-end">
 				<c:choose>
@@ -35,11 +45,11 @@
 							class="btn btn-primary">Sign-up</button>
 					</c:when>
 					<c:otherwise>
-						<span>Bienvenido ${user.email }</span>
+						<span>Bienvenido ${user.name }</span>
 						<button onclick="location.href='dashboard'" type="button"
 							class="btn btn-outline-primary me-2">Dashboard</button>
-						<button onclick="location.href='signup'" type="button"
-							class="btn btn-primary">Sign Out</button>
+<!-- 						<button onclick="location.href='signout'" type="button" -->
+<!-- 							class="btn btn-primary">Sign Out</button> -->
 					</c:otherwise>
 				</c:choose>
 			</div>

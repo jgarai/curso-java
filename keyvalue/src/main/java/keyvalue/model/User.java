@@ -2,7 +2,34 @@ package keyvalue.model;
 
 public class User {
 	private Integer id;
-	private String email, password;
+	private String email, password, name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public User(Integer id, String email, String password) {
+		setId(id);
+		setEmail(email);
+		setPassword(password);
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + "]";
+	}
+
+	public User(Integer id, String email, String password, String name) {
+		setId(id);
+		setEmail(email);
+		setPassword(password);
+		setName(name);
+
+	}
 
 	@Override
 	public int hashCode() {
@@ -10,6 +37,7 @@ public class User {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
@@ -33,23 +61,17 @@ public class User {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + "]";
-	}
-
-	public User(Integer id, String email, String password) {
-		setId(id);
-		setEmail(email);
-		setPassword(password);
 	}
 
 	public User() {

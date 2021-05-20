@@ -1,3 +1,4 @@
+package keyvalue.servlets.user;
 
 import java.io.IOException;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import keyvalue.dao.AccesoDatosException;
 import keyvalue.dao.DaoUser;
 import keyvalue.model.User;
 
@@ -29,11 +31,14 @@ public class SignupServlet extends HttpServlet {
 		try {
 			User user = new User(null, email, password);
 			DaoUser.insert(user);
-			// request.getRequestDispatcher("/home.jsp").forward(request, response);
-			request.setAttribute("message", "El usuario ha sido creado con exíto.");
-
+			request.setAttribute("message", "El usuario ha sido creado con éxito.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
+		} catch (AccesoDatosException e) {
+			e.printStackTrace();
+
 		} catch (Exception e) {
+			e.printStackTrace();
+
 			request.setAttribute("error", "Error insertando el usuario");
 			request.getRequestDispatcher("/signup.jsp").forward(request, response);
 		}
