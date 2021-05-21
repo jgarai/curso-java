@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.eskura21.libraries.beginnersjdbc.JdbcException;
+
 import keyvalue.dao.AccesoDatosException;
-import keyvalue.dao.DaoUser;
+import keyvalue.dao.config.Config;
+//import keyvalue.dao.DaoUser;
 import keyvalue.model.User;
 
 @WebServlet("/signin")
@@ -33,9 +36,13 @@ public class SigninServlet extends HttpServlet {
 		// fetch user from data base
 		User user = new User();
 		try {
-			user = DaoUser.getUserByEmail(email);
+			// user = DaoUser.getUserByEmail(email);
+			user = Config.daoUser.selectOneByField("email", email);
+
 			if (user == null) {
-				throw new AccesoDatosException("El registro  de usuario no existe");
+
+				// throw new AccesoDatosException("El registro de usuario no existe");
+				throw new JdbcException("El registro  de usuario no existe");
 			}
 			// compare if it matchs user data
 			if (password.equals(user.getPassword())) {
@@ -50,6 +57,10 @@ public class SigninServlet extends HttpServlet {
 			}
 
 		} catch (AccesoDatosException e) {
+			System.out.println(e);
+			request.setAttribute("error", "Usuario o contraseña incorrectos");
+			request.getRequestDispatcher("/signin.jsp").forward(request, response);
+		} catch (JdbcException e) {
 			System.out.println(e);
 			request.setAttribute("error", "Usuario o contraseña incorrectos");
 			request.getRequestDispatcher("/signin.jsp").forward(request, response);

@@ -2,7 +2,7 @@ package keyvalue.model;
 
 public class User {
 	private Integer id;
-	private String email, password, name;
+	private String email, password, name, rol;
 
 	public String getName() {
 		return name;
@@ -18,17 +18,26 @@ public class User {
 		setPassword(password);
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + "]";
-	}
-
 	public User(Integer id, String email, String password, String name) {
 		setId(id);
 		setEmail(email);
 		setPassword(password);
 		setName(name);
 
+	}
+
+	public User(Integer id, String email, String password, String name, String rol) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.rol = rol;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", rol=" + rol
+				+ "]";
 	}
 
 	@Override
@@ -39,6 +48,7 @@ public class User {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((rol == null) ? 0 : rol.hashCode());
 		return result;
 	}
 
@@ -71,7 +81,20 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (rol == null) {
+			if (other.rol != null)
+				return false;
+		} else if (!rol.equals(other.rol))
+			return false;
 		return true;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 	public User() {

@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eskura21.libraries.beginnersjdbc.JdbcException;
+
 import keyvalue.dao.AccesoDatosException;
-import keyvalue.dao.DaoUser;
+import keyvalue.dao.config.Config;
 import keyvalue.model.User;
 
 @WebServlet("/signup")
@@ -29,10 +31,19 @@ public class SignupServlet extends HttpServlet {
 
 		// insert into database
 		try {
-			User user = new User(null, email, password);
-			DaoUser.insert(user);
+			// OLD CODE / User user = new User(null, email, password);
+			// OLD CODE / user = Config.daoUser.selectOneByField("email", email);
+			// OLD CODE / DaoUser.insert(user);
+			User user = new User(null, email, password, null);
+			Config.daoUser.insert(user);
+
 			request.setAttribute("message", "El usuario ha sido creado con éxito.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
+		} catch (JdbcException e) {
+			e.printStackTrace();
+
+			request.setAttribute("error", "Error insertando el usuario");
+			request.getRequestDispatcher("/signup.jsp").forward(request, response);
 		} catch (AccesoDatosException e) {
 			e.printStackTrace();
 

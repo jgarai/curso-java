@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import keyvalue.dao.DaoUser;
+import keyvalue.dao.config.Config;
 import keyvalue.model.User;
 
 @WebServlet("/dashboard")
@@ -23,6 +23,7 @@ public class DashboardServlet extends HttpServlet {
 		User user = ((User) session.getAttribute("user"));
 		if (user == null) {
 			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
 		}
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 
@@ -35,13 +36,16 @@ public class DashboardServlet extends HttpServlet {
 		if (user == null) {
 			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
 			request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+			return;
 		}
 
 		String DeleteUser = request.getParameter("delete");
 		if (DeleteUser.equals("true")) {
 			try {
 				Integer id = user.getId();
-				DaoUser.delete(id);
+				// OLD CODE / DaoUser.delete(id);
+				Config.daoUser.delete(id);
+
 				session.invalidate();
 
 				request.setAttribute("message", "Tu usuario ha sido borrado de la base de datos");
