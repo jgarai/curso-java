@@ -6,9 +6,20 @@
 <div class="container">
 
 	<h2>Dashboard</h2>
+	<div><h3>Cambiar nombre</h3></div>
+	${user.name }
+	<form action="dashboard" method="post">
+			<input type="text" name="change_name" ><br>
+			 <input
+				type="submit" value="Cambiar nombre">
 
+			<div>${error }</div>
+			<div>${message }</div>
+		</form>
+	
 
-	<div>	<p>Cerrar sesión</p>
+	<div>
+		<h3>Cerrar sesión</h3>
 		<form action="signout" method="post">
 			<input type="hidden" name="signout" value="true"><br>
 			 <input
@@ -17,7 +28,11 @@
 			<div>${error }</div>
 			<div>${message }</div>
 		</form>
-		<p>Delete user</p>
+	</div>
+	
+	
+	<div>		
+		<h3>Delete user</h3>
 		<form action="dashboard" method="post">
 			<input type="hidden" name="delete" value="true"><br> <input
 				type="submit" value="delete user">

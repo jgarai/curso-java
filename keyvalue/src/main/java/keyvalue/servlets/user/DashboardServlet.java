@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.eskura21.libraries.beginnersjdbc.JdbcException;
+
 import keyvalue.dao.config.Config;
 import keyvalue.model.User;
 
@@ -38,9 +40,9 @@ public class DashboardServlet extends HttpServlet {
 			request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 			return;
 		}
-
+		// delete user
 		String DeleteUser = request.getParameter("delete");
-		if (DeleteUser.equals("true")) {
+		if (DeleteUser != null && DeleteUser.equals("true")) {
 			try {
 				Integer id = user.getId();
 				// OLD CODE / DaoUser.delete(id);
@@ -59,6 +61,24 @@ public class DashboardServlet extends HttpServlet {
 			}
 
 		}
+		// rename user
+		String newName = request.getParameter("change_name");
+		if(newName != null) {
+			try {
+				Integer id = user.getId();
+				//Config.daoUser.u
+				request.setAttribute("message", "Tu usuario ha sido renombrado.");
+				request.getRequestDispatcher("/message.jsp").forward(request, response);
+
+			} catch(JdbcException e) {
+				request.setAttribute("error", "Ha habido un error renombrando tu usuario");
+				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+				
+			}
+			
+		}
+
+		
 
 	}
 

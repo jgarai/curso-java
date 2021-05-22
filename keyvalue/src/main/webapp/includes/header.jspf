@@ -45,7 +45,7 @@
 							class="btn btn-primary">Sign-up</button>
 					</c:when>
 					<c:otherwise>
-						<span>Bienvenido ${user.name }</span>
+						<span class="px-2">Bienvenido ${user.name }</span>
 						<button onclick="location.href='dashboard'" type="button"
 							class="btn btn-outline-primary me-2">Dashboard</button>
 <!-- 						<button onclick="location.href='signout'" type="button" -->
