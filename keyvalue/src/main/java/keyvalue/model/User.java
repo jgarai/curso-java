@@ -27,11 +27,12 @@ public class User {
 	}
 
 	public User(Integer id, String email, String password, String name, String rol) {
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.rol = rol;
+		setId(id);
+		setEmail(email);
+		setPassword(password);
+		setName(name);
+		setRol(rol);
+		
 	}
 
 	@Override

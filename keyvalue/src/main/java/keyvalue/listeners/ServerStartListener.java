@@ -22,10 +22,11 @@ public class ServerStartListener implements ServletContextListener {
 	}
 
 	public void contextInitialized(ServletContextEvent sce) {
-		// sce contiene el contexto de la aplicación
+		// sce contiene el contexto de la aplicaciï¿½n
 		String pathSqlite = sce.getServletContext().getRealPath("/WEB-INF/db.sqlite3");
-		// Guardamos a nivel global de la aplicación en la clase Config el DAO de
+		// Guardamos a nivel global de la aplicaciï¿½n en la clase Config el DAO de
 		// Usuario
+		System.out.println(pathSqlite);
 		Config.daoUser = new Dao<>(User.class, pathSqlite);
 		Config.daoSet = new Dao<>(Myset.class, pathSqlite);
 	}

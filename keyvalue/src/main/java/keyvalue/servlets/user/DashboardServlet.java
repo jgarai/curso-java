@@ -37,7 +37,7 @@ public class DashboardServlet extends HttpServlet {
 		User user = ((User) session.getAttribute("user"));
 		if (user == null) {
 			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
-			request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
 			return;
 		}
 		// delete user
@@ -45,41 +45,30 @@ public class DashboardServlet extends HttpServlet {
 		if (DeleteUser != null && DeleteUser.equals("true")) {
 			try {
 				Integer id = user.getId();
-				// OLD CODE / DaoUser.delete(id);
 				Config.daoUser.delete(id);
-
 				session.invalidate();
-
 				request.setAttribute("message", "Tu usuario ha sido borrado de la base de datos");
 				request.getRequestDispatcher("/message.jsp").forward(request, response);
-
-				// request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
-			} catch (Exception e) {
+			} catch (JdbcException e) {
 				request.setAttribute("error", "Ha habido un error borrando tu usuario");
 				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
-
 			}
-
+			
 		}
 		// rename user
 		String newName = request.getParameter("change_name");
 		if(newName != null) {
 			try {
-				Integer id = user.getId();
-				//Config.daoUser.u
+				user.setName(newName);
+				Config.daoUser.update(user);
+				session.setAttribute("user", user);
 				request.setAttribute("message", "Tu usuario ha sido renombrado.");
 				request.getRequestDispatcher("/message.jsp").forward(request, response);
-
 			} catch(JdbcException e) {
 				request.setAttribute("error", "Ha habido un error renombrando tu usuario");
 				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
-				
 			}
-			
 		}
-
-		
-
 	}
 
 }

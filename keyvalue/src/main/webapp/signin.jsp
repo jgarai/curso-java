@@ -30,7 +30,7 @@
 			<div class="form-floating">
 				<input type="email" class="form-control" id="email"
 					placeholder="name@example.com" name="email" /> <label
-					for="floatingInput">Email address</label>
+					for="email">Email address</label>
 			</div>
 			<br>
 			<div class="form-floating">

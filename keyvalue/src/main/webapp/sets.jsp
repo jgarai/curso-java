@@ -5,27 +5,28 @@
 
 <div class="container">
 	<h2>Sets</h2>
-	
+
 	<table class="table">
-	
-		<thead>
+		<caption>List of sets</caption>
+
+		<thead class="table-light">
 			<tr>
-				<th>Id</th>
-				<th>Owner</th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Actions</th>
+				<th class="col-1">Id</th>
+				<th	class="col-1">Owner</th>
+				<th class="col-2">Name</th>
+				<th class="col-6">Description</th>
+				<th class="col-2">Actions</th>
 	
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${sets}" var="set">
 				<tr>
-					<th>${set.id}</th>
-					<td>${set.owner_id}</td>
-					<td>${set.name}</td>
-					<td>${set.description}</td>
-					<td>default | edit | delete</td>
+					<td class="col-1">${set.id}</th>
+					<td class="col-1">${set.owner_id}</td>
+					<td  class="col-2">${set.name}</td>
+					<td class="col-6">${set.description}</td>
+					<td class="col-2">default | edit | delete</td>
 		
 				</tr>
 			</c:forEach>
