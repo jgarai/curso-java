@@ -25,6 +25,7 @@
 
 			<ul class="nav col-12 col-md-auto mb-2  mb-md-0">
 				<li><a href="home" class="nav-link px-2 link-secondary">Home</a></li>
+				<%--USER Menu--%>
 				<c:choose>
 					<c:when test="${user == null }">
 
@@ -32,6 +33,16 @@
 					<c:otherwise>
 					<span class="nav-link px-2 link-secondary"> | </span>
 					<li><a href="sets" class="nav-link px-2 link-secondary">Sets</a>
+		
+					</c:otherwise>
+				</c:choose>
+				<%--ADMIN Menu--%>
+				<c:choose>
+					<c:when test="${user.rol == 'ADMIN' }">
+
+					</c:when>
+					<c:otherwise>
+									<li><a href="admin/users" class="nav-link px-2 link-secondary">Show users</a>
 		
 					</c:otherwise>
 				</c:choose>

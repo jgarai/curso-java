@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import keyvalue.model.User;
+
 @WebFilter("/admin/*")
 public class AdminFilter implements Filter {
 
@@ -21,7 +23,15 @@ public class AdminFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-		chain.doFilter(request, response);
+		User user = (User) session.getAttribute("user");
+		
+		
+		if(user != null && user.getRol().equals("ADMIN")) {
+			chain.doFilter(request, response);
+		} else {
+			req.setAttribute("error", "El usuario no tiene permiso para acceder");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
+		}
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
