@@ -26,7 +26,7 @@
 
 	</c:if>
 
-	<form action="newset" method="post">
+	<form action="set/newset" method="post">
 		<div class="form-floating">
 			<input type="text" class="form-control" id="setname"
 				placeholder="" name="setname" /> <label

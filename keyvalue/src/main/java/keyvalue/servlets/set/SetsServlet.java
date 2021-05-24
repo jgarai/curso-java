@@ -1,6 +1,7 @@
 package keyvalue.servlets.set;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -37,12 +38,26 @@ public class SetsServlet extends HttpServlet {
 		}
 		try {
 			// show user's sets
-			List<Myset> sets = Config.daoSet.select();
+			// TODO copy sets
+			List<Myset> setsAux = Config.daoSet.select();
+			List<Myset> sets = new ArrayList<>();
+			Integer owner, id;
+			for (Myset s : setsAux) {
+				owner = s.getOwner_id();
+				id = user.getId();
+				System.out.println(owner);
+				System.out.println(id);
+				if (owner == id) {
+					sets.add(s);
+				}
+
+			}
+			System.out.println(sets);
+
 			request.setAttribute("sets", sets);
 
 			request.getRequestDispatcher("/sets.jsp").forward(request, response);
 		} catch (JdbcException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

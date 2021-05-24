@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.eskura21.libraries.beginnersjdbc.JdbcException;
+
+import keyvalue.dao.config.Config;
+import keyvalue.model.Myset;
 import keyvalue.model.User;
 
 @WebServlet("/set/newset")
@@ -45,7 +49,20 @@ public class NewSetServlet extends HttpServlet {
 		String setName = request.getParameter("setname");
 		String setDescription = request.getParameter("setdescription");
 
-		doGet(request, response);
+		try {
+			// insert into database
+			Myset set = new Myset(null, user.getId(), setName, setDescription);
+			Config.daoSet.insert(set);
+
+			request.setAttribute("message", "El set ha sido creado con éxito.");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
+		} catch (JdbcException e) {
+			e.printStackTrace();
+			request.setAttribute("error", "Error insertando el set");
+			request.getRequestDispatcher("/set/newset.jsp").forward(request, response);
+
+		}
+
 	}
 
 }
