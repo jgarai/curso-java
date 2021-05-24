@@ -12,6 +12,7 @@
 	rel="stylesheet"
 	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
 	crossorigin="anonymous">
+<base href="${pageContext.request.contextPath}/" />
 <title>KeyValue</title>
 
 </head>
@@ -25,25 +26,27 @@
 
 			<ul class="nav col-12 col-md-auto mb-2  mb-md-0">
 				<li><a href="home" class="nav-link px-2 link-secondary">Home</a></li>
+
 				<%--USER Menu--%>
 				<c:choose>
 					<c:when test="${user == null }">
 
 					</c:when>
 					<c:otherwise>
-					<span class="nav-link px-2 link-secondary"> | </span>
-					<li><a href="sets" class="nav-link px-2 link-secondary">Sets</a>
-		
+						<li><span class="nav-link px-2 link-secondary">|</span></li>
+						<li><a href="sets" class="nav-link px-2 link-secondary">Sets</a>
+						<li><a href="set/newset" class="nav-link px-2 link-secondary">New Set</a>
 					</c:otherwise>
 				</c:choose>
 				<%--ADMIN Menu--%>
 				<c:choose>
-					<c:when test="${user.rol == 'ADMIN' }">
+					<c:when test="${user.rol != 'ADMIN' }">
 
 					</c:when>
 					<c:otherwise>
-									<li><a href="admin/users" class="nav-link px-2 link-secondary">Show users</a>
-		
+						<li><span class="nav-link px-2 link-secondary">|</span></li>
+
+						<li><a href="admin/users" class="nav-link px-2 link-danger">Users</a>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -59,8 +62,8 @@
 						<span class="px-2">Bienvenido ${user.name }</span>
 						<button onclick="location.href='dashboard'" type="button"
 							class="btn btn-outline-primary me-2">Dashboard</button>
-<!-- 						<button onclick="location.href='signout'" type="button" -->
-<!-- 							class="btn btn-primary">Sign Out</button> -->
+						<!-- 						<button onclick="location.href='signout'" type="button" -->
+						<!-- 							class="btn btn-primary">Sign Out</button> -->
 					</c:otherwise>
 				</c:choose>
 			</div>

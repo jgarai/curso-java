@@ -26,6 +26,10 @@ public class ServerStartListener implements ServletContextListener {
 		String pathSqlite = sce.getServletContext().getRealPath("/WEB-INF/db.sqlite3");
 		// Guardamos a nivel global de la aplicaci�n en la clase Config el DAO de
 		// Usuario
+
+		// different path for development purposes only
+		pathSqlite = "C:\\Users\\curso\\git\\curso-java\\keyvalue\\src\\main\\webapp\\WEB-INF\\db.sqlite3";
+
 		System.out.println(pathSqlite);
 		Config.daoUser = new Dao<>(User.class, pathSqlite);
 		Config.daoSet = new Dao<>(Myset.class, pathSqlite);

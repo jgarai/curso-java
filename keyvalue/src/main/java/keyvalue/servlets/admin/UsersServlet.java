@@ -1,6 +1,7 @@
-package keyvalue.servlets.user;
+package keyvalue.servlets.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,21 +15,30 @@ import com.eskura21.libraries.beginnersjdbc.JdbcException;
 import keyvalue.dao.config.Config;
 import keyvalue.model.User;
 
-@WebServlet("/dashboard")
-public class DashboardServlet extends HttpServlet {
+@WebServlet("/admin/users")
+public class UsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
+		// Check user if logged in // probably it is not necesary because of filters
 		if (user == null) {
 			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 			return;
+
 		}
-		request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+		try {
+			// show users
+			List<User> users = Config.daoUser.select();
+			request.setAttribute("users", users);
+
+			request.getRequestDispatcher("/admin/users.jsp").forward(request, response);
+		} catch (JdbcException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -36,40 +46,14 @@ public class DashboardServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
+		// Check user logged in // probably it is not necesary becouse of filters
 		if (user == null) {
 			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 			return;
-		}
-		// delete user
-		String DeleteUser = request.getParameter("delete");
-		if (DeleteUser != null && DeleteUser.equals("true")) {
-			try {
-				Integer id = user.getId();
-				Config.daoUser.delete(id);
-				session.invalidate();
-				request.setAttribute("message", "Tu usuario ha sido borrado de la base de datos");
-				request.getRequestDispatcher("/message.jsp").forward(request, response);
-			} catch (JdbcException e) {
-				request.setAttribute("error", "Ha habido un error borrando tu usuario");
-				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
-			}
 
 		}
-		// rename user
-		String newName = request.getParameter("change_name");
-		if (newName != null) {
-			try {
-				user.setName(newName);
-				Config.daoUser.update(user);
-				session.setAttribute("user", user);
-				request.setAttribute("message", "Tu usuario ha sido renombrado.");
-				request.getRequestDispatcher("/message.jsp").forward(request, response);
-			} catch (JdbcException e) {
-				request.setAttribute("error", "Ha habido un error renombrando tu usuario");
-				request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
-			}
-		}
+
 	}
 
 }

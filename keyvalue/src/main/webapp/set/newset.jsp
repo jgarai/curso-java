@@ -14,7 +14,7 @@
 
 <div class="container">
 
-	<h2>Sign up</h2>
+	<h2>New Set</h2>
 	<div class="form-signin">
 	<c:if test="${error != null}">
 		<div class="alert alert-warning alert-dismissible fade show"
@@ -26,22 +26,21 @@
 
 	</c:if>
 
-	<form action="signup" method="post">
+	<form action="newset" method="post">
 		<div class="form-floating">
-			<input type="email" class="form-control" id="email"
-				placeholder="name@example.com" name="email" /> <label
-				for="floatingInput">Email address</label>
+			<input type="text" class="form-control" id="setname"
+				placeholder="" name="setname" /> <label
+				for="floatingInput">Set's name</label>
 		</div>
 		<br>
 		<div class="form-floating">
-			<input type="password" class="form-control" id="password"
-				placeholder="Password" name="password"> <label
-				for="password">Password</label>
+			<input type="text" class="form-control" id="setdescription"
+				placeholder="" name="setdescription"> <label
+				for="password">Description</label>
 		</div>
 		<br>
 
-		<button class="w-100 btn btn-lg btn-primary" type="submit">Sign
-			in</button>
+		<button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
 	</form>
 	</div>
 
