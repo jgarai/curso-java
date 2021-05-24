@@ -31,31 +31,24 @@ public class SetsServlet extends HttpServlet {
 		User user = ((User) session.getAttribute("user"));
 		// Check user logged in
 		if (user == null) {
-			request.setAttribute("error", "No tienes acceso a esta página, logeate.");
+			request.setAttribute("error", "No tienes acceso a esta pï¿½gina, logeate.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 			return;
 
 		}
 		try {
 			// show user's sets
-			// TODO copy sets
+
 			List<Myset> setsAux = Config.daoSet.select();
 			List<Myset> sets = new ArrayList<>();
-			Integer owner, id;
 			for (Myset s : setsAux) {
-				owner = s.getOwner_id();
-				id = user.getId();
-				System.out.println(owner);
-				System.out.println(id);
-				if (owner == id) {
+
+				if (s.getOwner_id().equals(user.getId())) {
 					sets.add(s);
 				}
-
 			}
-			System.out.println(sets);
 
 			request.setAttribute("sets", sets);
-
 			request.getRequestDispatcher("/sets.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
