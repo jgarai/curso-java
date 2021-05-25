@@ -1,10 +1,10 @@
 package keyvalue.model;
 
 public class Myset {
-	Integer id;
-	Integer owner_id;
-	String name;
-	String description;
+	private Integer id;
+	private Integer ownerId;
+	private String name;
+	private String description;
 
 	public Integer getId() {
 		return id;
@@ -14,12 +14,12 @@ public class Myset {
 		this.id = id;
 	}
 
-	public Integer getOwner_id() {
-		return owner_id;
+	public Integer getOwnerId() {
+		return ownerId;
 	}
 
-	public void setOwner_id(Integer owner_id) {
-		this.owner_id = owner_id;
+	public void setOwnerId(Integer ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	public String getName() {
@@ -38,9 +38,9 @@ public class Myset {
 		this.description = description;
 	}
 
-	public Myset(Integer id, Integer owner_id, String name, String description) {
+	public Myset(Integer id, Integer ownerId, String name, String description) {
 		setId(id);
-		setOwner_id(owner_id);
+		setOwnerId(ownerId);
 		setName(name);
 		setDescription(description);
 
@@ -56,7 +56,7 @@ public class Myset {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((owner_id == null) ? 0 : owner_id.hashCode());
+		result = prime * result + ((ownerId == null) ? 0 : ownerId.hashCode());
 		return result;
 	}
 
@@ -84,17 +84,17 @@ public class Myset {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (owner_id == null) {
-			if (other.owner_id != null)
+		if (ownerId == null) {
+			if (other.ownerId != null)
 				return false;
-		} else if (!owner_id.equals(other.owner_id))
+		} else if (!ownerId.equals(other.ownerId))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Myset [id=" + id + ", owner_id=" + owner_id + ", name=" + name + ", description=" + description + "]";
+		return "Myset [id=" + id + ", ownerId=" + ownerId + ", name=" + name + ", description=" + description + "]";
 	}
 
 }

@@ -2,6 +2,7 @@ package keyvalue.dao.config;
 
 import com.eskura21.libraries.beginnersjdbc.Dao;
 
+import keyvalue.model.Key;
 import keyvalue.model.Myset;
 import keyvalue.model.User;
 
@@ -10,4 +11,5 @@ public class Config {
 	// InicioServidorListener
 	public static Dao<User> daoUser;
 	public static Dao<Myset> daoSet;
+	public static Dao<Key> daoKey;
 }

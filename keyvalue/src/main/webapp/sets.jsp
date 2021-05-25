@@ -24,12 +24,13 @@
 			
 				<tr>
 					<td >${set.id}</td>
-					<td >${set.owner_id}</td>
+					<td >${set.ownerId}</td>
 					<td >${set.name}</td>
 					<td >${set.description}</td>
-					<td ><a class="btn btn-primary btn-sm" href="set/add?id=${set.id}" role="button"> add key</a> 
-						<a class="btn btn-primary btn-sm" href="set/edit?id=${set.id}" role="button"> edit </a> 
-					<a class="btn btn-danger btn-sm" href="set/delete?id=${set.id}" role="button"> delete </a>
+					<td ><a class="btn btn-primary btn-sm" href="set/addkey?setid=${set.id}" role="button"> add key</a>
+					<a class="btn btn-primary btn-sm" href="set/list?setid=${set.id}" role="button"> list </a>  
+						<a class="btn btn-primary btn-sm" href="set/edit?setid=${set.id}" role="button"> edit </a> 
+					<a class="btn btn-danger btn-sm" href="set/delete?setid=${set.id}" role="button"> delete </a>
 					</td>
 		
 				</tr>

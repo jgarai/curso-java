@@ -25,6 +25,7 @@ public class SignupServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		// get email/pass from form
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -38,7 +39,7 @@ public class SignupServlet extends HttpServlet {
 			HttpSession session = (HttpSession) request.getSession();
 			session.setAttribute("user", user);
 
-			request.setAttribute("message", "El usuario ha sido creado con Ã©xito.");
+			request.setAttribute("message", "El usuario ha sido creado con éxito.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
