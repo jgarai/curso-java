@@ -34,7 +34,7 @@ public class AddKeyServlet extends HttpServlet {
 		User user = ((User) session.getAttribute("user"));
 		// Check user logged in
 		if (user == null) {
-			request.setAttribute("error", "No tienes acceso a esta página, logeate.");
+			request.setAttribute("error", "No tienes acceso a esta pï¿½gina, logeate.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 			return;
 
@@ -52,7 +52,7 @@ public class AddKeyServlet extends HttpServlet {
 				Key k = new Key(null, setOwnerId, key, value, now);
 				Config.daoKey.insert(k);
 
-				request.setAttribute("message", "La key ha sido creada con éxito.");
+				request.setAttribute("message", "La key ha sido creada con Ã©xito.");
 				request.getRequestDispatcher("/message.jsp").forward(request, response);
 			} catch (JdbcException e) {
 				e.printStackTrace();

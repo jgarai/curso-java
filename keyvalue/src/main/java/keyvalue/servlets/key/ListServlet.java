@@ -26,7 +26,7 @@ public class ListServlet extends HttpServlet {
 		User user = ((User) session.getAttribute("user"));
 		// Check user logged in
 		if (user == null) {
-			request.setAttribute("error", "No tienes acceso a esta p·gina, logeate.");
+			request.setAttribute("error", "No tienes acceso a esta p√°gina, logeate.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 			return;
 
@@ -39,11 +39,10 @@ public class ListServlet extends HttpServlet {
 			List<Key> keys = Config.daoKey.selectAllByField("setOwnerId", Integer.parseInt(setid));
 
 			request.setAttribute("keys", keys);
-			request.getRequestDispatcher("/sets.jsp").forward(request, response);
+			request.getRequestDispatcher("/set/list.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/set/list.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

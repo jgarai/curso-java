@@ -15,11 +15,11 @@ import keyvalue.model.User;
 public class ServerStartListener implements ServletContextListener {
 
 	public ServerStartListener() {
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {
-		// TODO Auto-generated method stub
+	
 	}
 
 	public void contextInitialized(ServletContextEvent sce) {
@@ -30,9 +30,9 @@ public class ServerStartListener implements ServletContextListener {
 
 		// different path for development purposes only
 		pathSqlite = "C:\\Users\\curso\\git\\curso-java\\keyvalue\\src\\main\\webapp\\WEB-INF\\db.sqlite3";
-		// pathSqlite =
-		// "/home/jgarai/git/curso-java/keyvalue/src/main/webapp/WEB-INF/db.sqlite3";
-		pathSqlite = pathSqlite + "?date_string_format=yyyy-MM-dd HH:MM:SS";
+		 pathSqlite =
+		 "/home/jgarai/git/curso-java/keyvalue/src/main/webapp/WEB-INF/db.sqlite3";
+//		pathSqlite = pathSqlite + "?date_string_format=yyyy-MM-dd HH:MM:SS";
 
 		System.out.println(pathSqlite);
 		Config.daoUser = new Dao<>(User.class, pathSqlite);

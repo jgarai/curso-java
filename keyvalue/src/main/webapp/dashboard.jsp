@@ -49,7 +49,7 @@
 							for="email">Nuevo nombre de usuario</label>
 					</div>
 					<br>
-					<button class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
+					<button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
 				</form>
 			</div>
 		</div>

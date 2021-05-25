@@ -3,11 +3,13 @@ package keyvalue.model;
 import java.time.LocalDateTime;
 
 public class Key {
-	Integer id;
-	Integer setOwnerId;
-	String key;
-	String value;
-	LocalDateTime createdAt;
+	private Integer id;
+	private Integer setOwnerId;
+	private String key;
+	private String value;
+	private LocalDateTime createdAt;
+	
+
 
 	public Integer getId() {
 		return id;
@@ -16,6 +18,7 @@ public class Key {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 	public Integer getSetOwnerId() {
 		return setOwnerId;
@@ -47,6 +50,23 @@ public class Key {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public Key() {
+	}
+
+	public Key(Integer id, Integer setOwnerId, String key, String value, LocalDateTime createdAt) {
+		this.id = id;
+		this.setOwnerId = setOwnerId;
+		this.key = key;
+		this.value = value;
+		this.createdAt = createdAt;
+	}
+
+	@Override
+	public String toString() {
+		return "Key [id=" + id + ", setOwnerId=" + setOwnerId + ", key=" + key + ", value=" + value + ", createdAt="
+				+ createdAt + "]";
 	}
 
 	@Override
@@ -96,23 +116,6 @@ public class Key {
 		} else if (!value.equals(other.value))
 			return false;
 		return true;
-	}
-
-	public Key() {
-	}
-
-	public Key(Integer id, Integer setOwnerId, String key, String value, LocalDateTime createdAt) {
-		this.id = id;
-		this.setOwnerId = setOwnerId;
-		this.key = key;
-		this.value = value;
-		this.createdAt = createdAt;
-	}
-
-	@Override
-	public String toString() {
-		return "Key [id=" + id + ", setOwnerId=" + setOwnerId + ", key=" + key + ", value=" + value + ", createdAt="
-				+ createdAt + "]";
 	}
 
 }
