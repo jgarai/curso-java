@@ -26,7 +26,7 @@ public class ListServlet extends HttpServlet {
 		User user = ((User) session.getAttribute("user"));
 		// Check user logged in
 		if (user == null) {
-			request.setAttribute("error", "No tienes acceso a esta p·gina, logeate.");
+			request.setAttribute("error", "No tienes acceso a esta p√°gina, logeate.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 			return;
 
