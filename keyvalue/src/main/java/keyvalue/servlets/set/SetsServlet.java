@@ -35,7 +35,7 @@ public class SetsServlet extends HttpServlet {
 		try {
 			// show user's sets
 
-			List<Myset> sets = Config.daoSet.selectAllByField("ownerId", user.getId());
+			List<Myset> sets = Config.daoSet.selectAllByField("owner_id", user.getId());
 
 			request.setAttribute("sets", sets);
 			request.getRequestDispatcher("/sets.jsp").forward(request, response);

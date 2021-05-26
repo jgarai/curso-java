@@ -50,6 +50,7 @@ public class AddKeyServlet extends HttpServlet {
 				// insert into database
 				LocalDateTime now = LocalDateTime.now();
 				Key k = new Key(null, setOwnerId, key, value, now);
+				// Key k = new Key(null, setOwnerId, key, value);
 				Config.daoKey.insert(k);
 
 				request.setAttribute("message", "La key ha sido creada con éxito.");

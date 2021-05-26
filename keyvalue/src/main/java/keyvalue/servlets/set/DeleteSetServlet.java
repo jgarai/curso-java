@@ -1,7 +1,6 @@
-package keyvalue.servlets.key;
+package keyvalue.servlets.set;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,11 +12,10 @@ import javax.servlet.http.HttpSession;
 import com.eskura21.libraries.beginnersjdbc.JdbcException;
 
 import keyvalue.dao.config.Config;
-import keyvalue.model.Key;
 import keyvalue.model.User;
 
-@WebServlet("/set/list")
-public class ListServlet extends HttpServlet {
+@WebServlet("/set/delete")
+public class DeleteSetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,23 +29,26 @@ public class ListServlet extends HttpServlet {
 			return;
 
 		}
-
-		String setid = request.getParameter("setid");
+		String setId = request.getParameter("setid");
 		try {
-			// show user's sets
+			Config.daoSet.delete(Integer.parseInt(setId));
+			request.setAttribute("message", "El set ha podido borrarse con éxito.");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
 
-			List<Key> keys = Config.daoKey.selectAllByField("set_owner_id", Integer.parseInt(setid));
-
-			request.setAttribute("keys", keys);
-			request.getRequestDispatcher("/set/list.jsp").forward(request, response);
 		} catch (JdbcException e) {
-			e.printStackTrace();
+			request.setAttribute("error", "No se ha podido borrar el set.");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
+
+		} catch (NumberFormatException e) {
+			request.setAttribute("error", "El parametro no es correcto borrando el set.");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
+
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

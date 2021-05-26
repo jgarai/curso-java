@@ -8,8 +8,9 @@ public class Key {
 	private String key;
 	private String value;
 	private LocalDateTime createdAt;
-	
 
+	public Key() {
+	}
 
 	public Integer getId() {
 		return id;
@@ -18,7 +19,6 @@ public class Key {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public Integer getSetOwnerId() {
 		return setOwnerId;
@@ -52,28 +52,10 @@ public class Key {
 		this.createdAt = createdAt;
 	}
 
-	public Key() {
-	}
-
-	public Key(Integer id, Integer setOwnerId, String key, String value, LocalDateTime createdAt) {
-		this.id = id;
-		this.setOwnerId = setOwnerId;
-		this.key = key;
-		this.value = value;
-		this.createdAt = createdAt;
-	}
-
-	@Override
-	public String toString() {
-		return "Key [id=" + id + ", setOwnerId=" + setOwnerId + ", key=" + key + ", value=" + value + ", createdAt="
-				+ createdAt + "]";
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((key == null) ? 0 : key.hashCode());
 		result = prime * result + ((setOwnerId == null) ? 0 : setOwnerId.hashCode());
@@ -90,11 +72,6 @@ public class Key {
 		if (getClass() != obj.getClass())
 			return false;
 		Key other = (Key) obj;
-		if (createdAt == null) {
-			if (other.createdAt != null)
-				return false;
-		} else if (!createdAt.equals(other.createdAt))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -116,6 +93,19 @@ public class Key {
 		} else if (!value.equals(other.value))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Key [id=" + id + ", setOwnerId=" + setOwnerId + ", key=" + key + ", value=" + value + "]";
+	}
+
+	public Key(Integer id, Integer setOwnerId, String key, String value, LocalDateTime createdAt) {
+		this.id = id;
+		this.setOwnerId = setOwnerId;
+		this.key = key;
+		this.value = value;
+		this.createdAt = createdAt;
 	}
 
 }
