@@ -1,5 +1,6 @@
 package keyvalue.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Key {
@@ -7,7 +8,7 @@ public class Key {
 	private Integer setOwnerId;
 	private String key;
 	private String value;
-	private LocalDateTime createdAt;
+	private String createdAt;
 
 	public Key() {
 	}
@@ -44,18 +45,42 @@ public class Key {
 		this.value = value;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+	public String getCreatedAt() {
+
+		System.out.println(createdAt.toString());
+		return createdAt.toString();
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
+	public void setCreatedAt(String createdAtStr) {
+//		String pattern = "yyyy-MM-dd'T'HH:mm:ss";
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+//		LocalDateTime createdAt = LocalDateTime.parse(createdAtStr, formatter);
+//		this.createdAt = createdAt.toString();
+		this.createdAt = createdAtStr;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		setCreatedAt(createdAt.toString());
+	}
+
+	public Key(Integer id, Integer setOwnerId, String key, String value, String createdAtStr) {
+
+		setId(id);
+		setSetOwnerId(setOwnerId);
+		setKey(key);
+		setValue(value);
+		setCreatedAt(createdAtStr);
+	}
+
+	public Key(Integer id, Integer setOwnerId, String key, String value, LocalDateTime createdAtStr) {
+		this(id, setOwnerId, key, value, createdAtStr.toString());
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((key == null) ? 0 : key.hashCode());
 		result = prime * result + ((setOwnerId == null) ? 0 : setOwnerId.hashCode());
@@ -72,6 +97,11 @@ public class Key {
 		if (getClass() != obj.getClass())
 			return false;
 		Key other = (Key) obj;
+		if (createdAt == null) {
+			if (other.createdAt != null)
+				return false;
+		} else if (!createdAt.equals(other.createdAt))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -97,15 +127,8 @@ public class Key {
 
 	@Override
 	public String toString() {
-		return "Key [id=" + id + ", setOwnerId=" + setOwnerId + ", key=" + key + ", value=" + value + "]";
-	}
-
-	public Key(Integer id, Integer setOwnerId, String key, String value, LocalDateTime createdAt) {
-		this.id = id;
-		this.setOwnerId = setOwnerId;
-		this.key = key;
-		this.value = value;
-		this.createdAt = createdAt;
+		return "Key [id=" + id + ", setOwnerId=" + setOwnerId + ", key=" + key + ", value=" + value + ", createdAt="
+				+ createdAt + "]";
 	}
 
 }

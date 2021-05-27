@@ -42,6 +42,8 @@ public class ListServlet extends HttpServlet {
 			request.getRequestDispatcher("/set/list.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
+
 		}
 	}
 
