@@ -2,6 +2,8 @@ package keyvalue.servlets.key;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,8 +50,12 @@ public class AddKeyServlet extends HttpServlet {
 
 			try {
 				// insert into database
-				LocalDateTime now = LocalDateTime.now();
-				// Key k = new Key(null, setOwnerId, key, value, now);
+
+				/*
+				 * Some versions of java take microseconds and other milliseconds and this makes
+				 * trouble when parsing the time
+				 */
+				LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
 				Key k = new Key(null, setOwnerId, key, value, now.toString());
 
 				Config.daoKey.insert(k);

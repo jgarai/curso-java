@@ -29,10 +29,9 @@ public class ServerStartListener implements ServletContextListener {
 		// Usuario
 
 		// different path for development purposes only
-		pathSqlite = "C:\\Users\\curso\\git\\curso-java\\keyvalue\\src\\main\\webapp\\WEB-INF\\db.sqlite3";
-		// pathSqlite =
-		// "/home/jgarai/git/curso-java/keyvalue/src/main/webapp/WEB-INF/db.sqlite3";
-		pathSqlite = pathSqlite + "?date_string_format=yyyy-MM-dd'T'HH:mm:ss.SSS";
+		String ipartek = "C:\\Users\\curso\\git\\curso-java\\keyvalue\\src\\main\\webapp\\WEB-INF\\db.sqlite3";
+		String home  = "/home/jgarai/git/curso-java/keyvalue/src/main/webapp/WEB-INF/db.sqlite3";
+		pathSqlite = home  + "?date_string_format=yyyy-MM-dd'T'HH:mm:ss.SSS";
 
 		System.out.println(pathSqlite);
 		Config.daoUser = new Dao<>(User.class, pathSqlite);

@@ -2,6 +2,7 @@ package keyvalue.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Key {
 	private Integer id;
@@ -47,20 +48,21 @@ public class Key {
 
 	public String getCreatedAt() {
 
-		System.out.println(createdAt.toString());
-		return createdAt.toString();
+		return this.createdAt;
 	}
 
 	public void setCreatedAt(String createdAtStr) {
-//		String pattern = "yyyy-MM-dd'T'HH:mm:ss";
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-//		LocalDateTime createdAt = LocalDateTime.parse(createdAtStr, formatter);
-//		this.createdAt = createdAt.toString();
-		this.createdAt = createdAtStr;
+
+		this.createdAt = parseDateTimeFromString(createdAtStr);
 	}
 
-	public void setCreatedAt(LocalDate createdAt) {
-		setCreatedAt(createdAt.toString());
+	private String parseDateTimeFromString(String createdAtStr) {
+		// parse input
+		String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+		LocalDateTime createdAt = LocalDateTime.parse(createdAtStr, formatter);
+
+		return createdAt.toString();
 	}
 
 	public Key(Integer id, Integer setOwnerId, String key, String value, String createdAtStr) {
@@ -70,10 +72,6 @@ public class Key {
 		setKey(key);
 		setValue(value);
 		setCreatedAt(createdAtStr);
-	}
-
-	public Key(Integer id, Integer setOwnerId, String key, String value, LocalDateTime createdAtStr) {
-		this(id, setOwnerId, key, value, createdAtStr.toString());
 	}
 
 	@Override
@@ -129,6 +127,19 @@ public class Key {
 	public String toString() {
 		return "Key [id=" + id + ", setOwnerId=" + setOwnerId + ", key=" + key + ", value=" + value + ", createdAt="
 				+ createdAt + "]";
+	}
+
+	public String dateTime() {
+		// parse input
+		String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+		LocalDateTime createdAt = LocalDateTime.parse(this.createdAt, formatter);
+
+		// format for storage
+		formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+		return createdAt.format(formatter);
+
 	}
 
 }

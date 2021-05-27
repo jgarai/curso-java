@@ -34,7 +34,7 @@ public class ListServlet extends HttpServlet {
 
 		String setid = request.getParameter("setid");
 		try {
-			// show user's sets
+			// show set's keys
 
 			List<Key> keys = Config.daoKey.selectAllByField("set_owner_id", Integer.parseInt(setid));
 

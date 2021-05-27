@@ -31,7 +31,7 @@
 					<td >${key.setOwnerId}</td>
 					<td >${key.key}</td>
 					<td >${key.value}</td>
-					<td >${key.createdAt}</td>
+					<td >${key.dateTime()}</td>
 					<td ><a class="btn btn-primary btn-sm" href="key/edit?keyid=${key.id}" role="button"> edit</a>
 				
 					<a class="btn btn-danger btn-sm" href="key/delete?keyid=${key.id}" role="button"> delete </a>
