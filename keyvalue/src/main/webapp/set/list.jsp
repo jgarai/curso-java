@@ -17,9 +17,9 @@
 				<th class="col-1">Id</th>
 				<th	class="col-1">Set</th>
 				<th class="col-1">Key</th>
-				<th class="col-3">Value</th>
-				<th class="col-2">CreatedAt</th>
-				<th class="col-3">Actions</th>
+				<th class="col-4">Value</th>
+				<th class="col-3">CreatedAt</th>
+				<th class="col-2">Actions</th>
 	
 			</tr>
 		</thead>
@@ -32,11 +32,10 @@
 					<td >${key.key}</td>
 					<td >${key.value}</td>
 					<td >${key.createdAt}</td>
-<%-- 					<td ><a class="btn btn-primary btn-sm" href="set/addkey?setid=${set.id}" role="button"> add key</a> --%>
-<%-- 					<a class="btn btn-primary btn-sm" href="set/list?id=${set.id}" role="button"> list </a>   --%>
-<%-- 						<a class="btn btn-primary btn-sm" href="set/edit?id=${set.id}" role="button"> edit </a>  --%>
-<%-- 					<a class="btn btn-danger btn-sm" href="set/delete?id=${set.id}" role="button"> delete </a> --%>
-<!-- 					</td> -->
+					<td ><a class="btn btn-primary btn-sm" href="key/edit?keyid=${key.id}" role="button"> edit</a>
+				
+					<a class="btn btn-danger btn-sm" href="key/delete?keyid=${key.id}" role="button"> delete </a>
+					</td>
 		
 				</tr>
 			</c:forEach>
