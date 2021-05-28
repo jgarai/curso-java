@@ -14,7 +14,7 @@
 
 <div class="container">
 
-	<h2>Add Key</h2>
+	<h2>New Set</h2>
 	<div class="form-signin">
 	<c:if test="${error != null}">
 		<div class="alert alert-warning alert-dismissible fade show"
@@ -25,21 +25,20 @@
 		</div>
 
 	</c:if>
-	${param.setid }
-	<form action="set/addkey" method="post">
+
+	<form action="set/add-set" method="post">
 		<div class="form-floating">
-			<input type="text" class="form-control" id="key"
-				placeholder="" name="key" /> <label
-				for="floatingInput">Key</label>
+			<input type="text" class="form-control" id="setname"
+				placeholder="" name="setname" /> <label
+				for="floatingInput">Set's name</label>
 		</div>
 		<br>
 		<div class="form-floating">
-			<input type="text" class="form-control" id="value"
-				placeholder="" name="value"> <label
-				for="password">Value</label>
+			<input type="text" class="form-control" id="setdescription"
+				placeholder="" name="setdescription"> <label
+				for="password">Description</label>
 		</div>
 		<br>
-		<input type="hidden" name="setid" value="${param.setid }">
 
 		<button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
 	</form>

@@ -34,8 +34,8 @@
 					</c:when>
 					<c:otherwise>
 						<li><span class="nav-link px-2 link-secondary">|</span></li>
-						<li><a href="sets" class="nav-link px-2 link-secondary">Sets</a>
-						<li><a href="set/newset" class="nav-link px-2 link-secondary">New Set</a>
+						<li><a href="set/list-sets" class="nav-link px-2 link-secondary">Sets</a>
+						<li><a href="set/add-set" class="nav-link px-2 link-secondary">Add Set</a>
 					</c:otherwise>
 				</c:choose>
 				<%--ADMIN Menu--%>

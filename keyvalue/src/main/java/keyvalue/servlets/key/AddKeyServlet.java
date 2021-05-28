@@ -2,7 +2,6 @@ package keyvalue.servlets.key;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import javax.servlet.ServletException;
@@ -18,14 +17,14 @@ import keyvalue.dao.config.Config;
 import keyvalue.model.Key;
 import keyvalue.model.User;
 
-@WebServlet("/set/addkey")
+@WebServlet("/set/add-key")
 public class AddKeyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String setid = request.getParameter("setid");
-		request.getRequestDispatcher("/set/addkey.jsp").forward(request, response);
+		request.getRequestDispatcher("/set/add-key.jsp").forward(request, response);
 
 	}
 
@@ -35,12 +34,12 @@ public class AddKeyServlet extends HttpServlet {
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
 		// Check user logged in
-		if (user == null) {
-			request.setAttribute("error", "No tienes acceso a esta p�gina, logeate.");
-			request.getRequestDispatcher("/message.jsp").forward(request, response);
-			return;
-
-		}
+//		if (user == null) {
+//			request.setAttribute("error", "No tienes acceso a esta p�gina, logeate.");
+//			request.getRequestDispatcher("/message.jsp").forward(request, response);
+//			return;
+//
+//		}
 		// get email/pass from form
 		String key = request.getParameter("key");
 		String value = request.getParameter("value");
@@ -65,7 +64,7 @@ public class AddKeyServlet extends HttpServlet {
 			} catch (JdbcException e) {
 				e.printStackTrace();
 				request.setAttribute("error", "Error insertando la key");
-				request.getRequestDispatcher("/set/addkey.jsp").forward(request, response);
+				request.getRequestDispatcher("/set/add-key.jsp").forward(request, response);
 			}
 		}
 

@@ -6,7 +6,7 @@
 <div class="container">
 	<h2>Sets</h2>
 
-	<table class="table">
+	<table class="table table-striped table-sm">
 		<caption>List of sets</caption>
 
 		<thead class="table-light">
@@ -27,10 +27,10 @@
 					<td >${set.ownerId}</td>
 					<td >${set.name}</td>
 					<td >${set.description}</td>
-					<td ><a class="btn btn-primary btn-sm" href="set/addkey?setid=${set.id}" role="button"> add key</a>
-					<a class="btn btn-primary btn-sm" href="set/list?setid=${set.id}" role="button"> list </a>  
-						<a class="btn btn-primary btn-sm" href="set/edit?setid=${set.id}" role="button"> edit </a> 
-					<a class="btn btn-danger btn-sm" href="set/delete?setid=${set.id}" role="button"> delete </a>
+					<td ><a class="btn btn-primary btn-sm" href="set/add-key?setid=${set.id}" role="button"> add key</a>
+					<a class="btn btn-primary btn-sm" href="set/list-keys?setid=${set.id}" role="button"> list </a>  
+						<a class="btn btn-primary btn-sm" href="set/edit-set?setid=${set.id}" role="button"> edit </a> 
+					<a class="btn btn-danger btn-sm" href="set/delete-set?setid=${set.id}" role="button"> delete </a>
 					</td>
 		
 				</tr>

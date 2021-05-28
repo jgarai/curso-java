@@ -16,8 +16,8 @@ import keyvalue.dao.config.Config;
 import keyvalue.model.Key;
 import keyvalue.model.User;
 
-@WebServlet("/set/list")
-public class ListServlet extends HttpServlet {
+@WebServlet("/set/list-keys")
+public class ListKeysServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,12 +25,12 @@ public class ListServlet extends HttpServlet {
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
 		// Check user logged in
-		if (user == null) {
-			request.setAttribute("error", "No tienes acceso a esta p√°gina, logeate.");
-			request.getRequestDispatcher("/message.jsp").forward(request, response);
-			return;
-
-		}
+//		if (user == null) {
+//			request.setAttribute("error", "No tienes acceso a esta p·gina, logeate.");
+//			request.getRequestDispatcher("/message.jsp").forward(request, response);
+//			return;
+//
+//		}
 
 		String setid = request.getParameter("setid");
 		try {
@@ -39,7 +39,7 @@ public class ListServlet extends HttpServlet {
 			List<Key> keys = Config.daoKey.selectAllByField("set_owner_id", Integer.parseInt(setid));
 
 			request.setAttribute("keys", keys);
-			request.getRequestDispatcher("/set/list.jsp").forward(request, response);
+			request.getRequestDispatcher("/set/list-keys.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);

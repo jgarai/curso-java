@@ -14,7 +14,7 @@ import com.eskura21.libraries.beginnersjdbc.JdbcException;
 import keyvalue.dao.config.Config;
 import keyvalue.model.User;
 
-@WebServlet("/set/delete")
+@WebServlet("/set/delete-set")
 public class DeleteSetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -48,7 +48,7 @@ public class DeleteSetServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

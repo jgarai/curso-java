@@ -16,8 +16,8 @@ import keyvalue.dao.config.Config;
 import keyvalue.model.Myset;
 import keyvalue.model.User;
 
-@WebServlet("/sets")
-public class SetsServlet extends HttpServlet {
+@WebServlet("/set/list-sets")
+public class ListSetsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,22 +25,18 @@ public class SetsServlet extends HttpServlet {
 
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
-		// Check user logged in
-		if (user == null) {
-			request.setAttribute("error", "No tienes acceso a esta página, logeate.");
-			request.getRequestDispatcher("/message.jsp").forward(request, response);
-			return;
 
-		}
 		try {
 			// show user's sets
 
 			List<Myset> sets = Config.daoSet.selectAllByField("owner_id", user.getId());
 
 			request.setAttribute("sets", sets);
-			request.getRequestDispatcher("/sets.jsp").forward(request, response);
+			request.getRequestDispatcher("/set/list-sets.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
+
 		}
 	}
 

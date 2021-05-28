@@ -16,7 +16,7 @@ import keyvalue.dao.config.Config;
 import keyvalue.model.User;
 
 @WebServlet("/admin/users")
-public class UsersServlet extends HttpServlet {
+public class ListUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

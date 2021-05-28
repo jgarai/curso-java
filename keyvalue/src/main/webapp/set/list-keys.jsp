@@ -9,7 +9,7 @@
 
 	<h2>List Keys</h2>
 	${param.setid }
-		<table class="table">
+		<table class="table table-striped table-sm">
 		<caption>List of Keys</caption>
 
 		<thead class="table-light">
