@@ -12,6 +12,10 @@
 	rel="stylesheet"
 	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
 	crossorigin="anonymous">
+
+<link
+	href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css"
+	rel="stylesheet" />
 <base href="${pageContext.request.contextPath}/" />
 <title>KeyValue</title>
 
@@ -34,8 +38,10 @@
 					</c:when>
 					<c:otherwise>
 						<li><span class="nav-link px-2 link-secondary">|</span></li>
-						<li><a href="set/list-sets" class="nav-link px-2 link-secondary">Sets</a>
-						<li><a href="set/add-set" class="nav-link px-2 link-secondary">Add Set</a>
+						<li><a href="set/list-sets"
+							class="nav-link px-2 link-secondary">Sets</a>
+						<li><a href="set/add-set"
+							class="nav-link px-2 link-secondary">Add Set</a>
 					</c:otherwise>
 				</c:choose>
 				<%--ADMIN Menu--%>

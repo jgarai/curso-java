@@ -62,6 +62,8 @@
 	</div>
 </div>
 
+<link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+
 <script>
 	var confirmDelete = document.getElementById('delete-modal')
 	confirmDelete.addEventListener('show.bs.modal', function(event) {
