@@ -13,7 +13,7 @@
 </style>
 
 <div class="container">
-	<h2>Dashboard</h2>
+	<h3>Dashboard</h3>
 	<nav>
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
 			<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"

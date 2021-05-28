@@ -4,7 +4,7 @@
 <%@ include file="/includes/header.jspf"%>
 
 <div class="container">
-	<h2>Admin - Users</h2>
+	<h3>Admin - Users</h3>
 
 	<table class="table">
 		<caption>List Users</caption>
@@ -31,14 +31,47 @@
 					<td >${user.name}</td>
 					<td >${user.rol}</td>
 					<td >
-					<a class="btn btn-primary btn-sm" href="admin/user/edit?id=${user.id}" role="button"> edit </a> 
-					<a class="btn btn-danger btn-sm" href="admin/user/delete?id=${user.id}" role="button"> delete </a>
+					<a class="btn btn-primary btn-sm" href="admin/user/edit?id=${user.id}" role="button"> edit </a>
+					<a class="btn btn-danger btn-sm" data-bs-toggle="modal"
+						data-bs-target="#delete-modal" href="admin/user/delete?id=${user.id}" role="button">delete</a>
 					</td>
 		
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<!-- Modal -->
+<div class="modal fade" id="delete-modal" data-bs-backdrop="static"
+	data-bs-keyboard="false" tabindex="-1"
+	aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Are you sure?</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">This set is going to be delete
+				from the data base</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">close</button>
+				<a href="#" type="button" class="btn btn-danger">delete</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var confirmDelete = document.getElementById('delete-modal')
+	confirmDelete.addEventListener('show.bs.modal', function(event) {
+		var enlace = event.relatedTarget
+		var href = enlace.getAttribute('href')
+		var a = confirmDelete.querySelector('.modal-footer a')
+		a.href = href;
+	})
+</script>
 
 </div>
 

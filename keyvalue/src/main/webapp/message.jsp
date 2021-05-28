@@ -4,7 +4,7 @@
 <%@ include file="/includes/header.jspf"%>
 
 <div class="container">
-	<h2>message</h2>
+	<h3>message</h3>
 
 	<c:choose>
 		<c:when test="${message != null}">

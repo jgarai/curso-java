@@ -14,7 +14,7 @@
 
 <div class="container">
 
-	<h2>New Set</h2>
+	<h3>New Set</h3>
 	<div class="form-signin">
 	<c:if test="${error != null}">
 		<div class="alert alert-warning alert-dismissible fade show"

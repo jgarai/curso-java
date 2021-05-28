@@ -14,7 +14,7 @@
 
 <div class="container">
 
-	<h2>Add Key</h2>
+	<h3>Add Key</h3>
 	<div class="form-signin">
 	<c:if test="${error != null}">
 		<div class="alert alert-warning alert-dismissible fade show"
@@ -25,7 +25,7 @@
 		</div>
 
 	</c:if>
-	${param.setid }
+
 	<form action="set/add-key" method="post">
 		<div class="form-floating">
 			<input type="text" class="form-control" id="key"

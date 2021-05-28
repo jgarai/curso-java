@@ -14,7 +14,7 @@
 
 <div class="container">
 
-	<h2>Sign in</h2>
+	<h3>Sign in</h3>
 	<div class="form-signin">
 		<c:if test="${error != null}">
 			<div class="alert alert-warning alert-dismissible fade show"

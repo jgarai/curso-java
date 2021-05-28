@@ -5,7 +5,7 @@
 
 <div class="container">
 
-	<h2>Home</h2>
+	<h3>Home</h3>
 
 Hola! <p>Aquí puedes crear sets. Los sets no son mas que colecciones de keys y sus values. </p>
 <p>Puedes crear nuevos sets para tu usuario hasta un máximo de 8. Listar los sets de los que dispones o borrarlos.</p>
