@@ -1,8 +1,13 @@
 package keyvalue.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 public class User {
 	private Integer id;
 	private String email, password, name, rol;
+	private LocalDateTime createdAt;
 
 	public String getName() {
 		return name;
@@ -12,39 +17,39 @@ public class User {
 		this.name = name;
 	}
 
+	public User() {
+		LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+		setCreatedAt(now);
+	}
+
 	public User(Integer id, String email, String password) {
+		this();
 		setId(id);
 		setEmail(email);
 		setPassword(password);
 	}
 
 	public User(Integer id, String email, String password, String name) {
-		setId(id);
-		setEmail(email);
-		setPassword(password);
+		this(id, email, password);
 		setName(name);
-
 	}
 
 	public User(Integer id, String email, String password, String name, String rol) {
-		setId(id);
-		setEmail(email);
-		setPassword(password);
-		setName(name);
+		this(id, email, password, name);
 		setRol(rol);
-		
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", rol=" + rol
-				+ "]";
+				+ ", createdAt=" + createdAt + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -62,6 +67,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (createdAt == null) {
+			if (other.createdAt != null)
+				return false;
+		} else if (!createdAt.equals(other.createdAt))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -90,16 +100,22 @@ public class User {
 		return true;
 	}
 
+
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	public String getRol() {
 		return rol;
 	}
 
 	public void setRol(String rol) {
 		this.rol = rol;
-	}
-
-	public User() {
-
 	}
 
 	public Integer getId() {
@@ -124,6 +140,15 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String dateTime() {
+
+		// format for storage
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+		return createdAt.format(formatter);
+
 	}
 
 }

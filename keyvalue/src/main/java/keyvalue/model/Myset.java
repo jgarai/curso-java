@@ -1,10 +1,15 @@
 package keyvalue.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 public class Myset {
 	private Integer id;
 	private Integer ownerId;
 	private String name;
 	private String description;
+	private LocalDateTime createdAt;
 
 	public Integer getId() {
 		return id;
@@ -43,16 +48,33 @@ public class Myset {
 		setOwnerId(ownerId);
 		setName(name);
 		setDescription(description);
-
-	}
+		LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+		setCreatedAt(now);
+		
+}
 
 	public Myset() {
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	@Override
+	public String toString() {
+		return "Myset [id=" + id + ", ownerId=" + ownerId + ", name=" + name + ", description=" + description
+				+ ", createdAt=" + createdAt + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -69,6 +91,11 @@ public class Myset {
 		if (getClass() != obj.getClass())
 			return false;
 		Myset other = (Myset) obj;
+		if (createdAt == null) {
+			if (other.createdAt != null)
+				return false;
+		} else if (!createdAt.equals(other.createdAt))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -92,9 +119,14 @@ public class Myset {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Myset [id=" + id + ", ownerId=" + ownerId + ", name=" + name + ", description=" + description + "]";
+	public String dateTime() {
+
+		// format for storage
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+		return createdAt.format(formatter);
+
 	}
+	
 
 }

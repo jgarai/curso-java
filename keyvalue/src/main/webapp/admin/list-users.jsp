@@ -13,9 +13,10 @@
 			<tr>
 				<th class="col-1">Id</th>
 				<th	class="col-2">Email</th>
-				<th	class="col-3">Hash</th>
+				<th	class="col-2">Hash</th>
 				<th class="col-2">Name</th>
-				<th class="col-1">rol</th>
+				<th class="col-1">Rol</th>
+				<th class="col-2">CreatedAt</th>
 				<th class="col-2">Actions</th>
 	
 			</tr>
@@ -30,6 +31,7 @@
 					<td >${user.password}</td>
 					<td >${user.name}</td>
 					<td >${user.rol}</td>
+					<td >${user.dateTime()}</td>
 					<td >
 					<a class="btn btn-primary btn-sm" href="admin/user/edit?id=${user.id}" role="button"> edit </a>
 					<a class="btn btn-danger btn-sm" data-bs-toggle="modal"

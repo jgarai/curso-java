@@ -52,7 +52,7 @@
 					<c:otherwise>
 						<li><span class="nav-link px-2 link-secondary">|</span></li>
 
-						<li><a href="admin/users" class="nav-link px-2 link-danger">Users</a>
+						<li><a href="admin/list-users" class="nav-link px-2 link-danger">Users</a>
 					</c:otherwise>
 				</c:choose>
 			</ul>

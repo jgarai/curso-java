@@ -15,7 +15,7 @@ import com.eskura21.libraries.beginnersjdbc.JdbcException;
 import keyvalue.dao.config.Config;
 import keyvalue.model.User;
 
-@WebServlet("/admin/users")
+@WebServlet("/admin/list-users")
 public class ListUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class ListUsersServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
-		// Check user if logged in // probably it is not necesary because of filters
+		// Check user if logged in // probably it is not necessary because of filters
 		if (user == null) {
 			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
@@ -35,7 +35,7 @@ public class ListUsersServlet extends HttpServlet {
 			List<User> users = Config.daoUser.select();
 			request.setAttribute("users", users);
 
-			request.getRequestDispatcher("/admin/users.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/list-users.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class ListUsersServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
-		// Check user logged in // probably it is not necesary becouse of filters
+		// Check user logged in // probably it is not necessary because of filters
 		if (user == null) {
 			request.setAttribute("error", "No tienes acceso a dashboard, logeate.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);

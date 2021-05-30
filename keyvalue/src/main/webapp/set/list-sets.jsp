@@ -14,7 +14,8 @@
 				<th class="col-1">Id</th>
 
 				<th class="col-2">Name</th>
-				<th class="col-5">Description</th>
+				<th class="col-4">Description</th>
+				<th class="col-2">Created At</th>
 				<th class="col-3">Actions</th>
 	
 			</tr>
@@ -27,6 +28,7 @@
 
 					<td >${set.name}</td>
 					<td >${set.description}</td>
+					<td >${set.dateTime()}</td>
 					<td ><a class="btn btn-primary btn-sm" href="set/add-key?setid=${set.id}" role="button"> add key</a>
 					<a class="btn btn-primary btn-sm" href="set/list-keys?setid=${set.id}" role="button"> list </a>  
 						<a class="btn btn-primary btn-sm" href="set/edit-set?setid=${set.id}" role="button"> edit </a> 
