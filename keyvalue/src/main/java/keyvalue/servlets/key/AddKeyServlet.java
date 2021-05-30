@@ -23,7 +23,7 @@ public class AddKeyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String setid = request.getParameter("setid");
+
 		request.getRequestDispatcher("/set/add-key.jsp").forward(request, response);
 
 	}
@@ -31,15 +31,7 @@ public class AddKeyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		HttpSession session = (HttpSession) request.getSession();
-		User user = ((User) session.getAttribute("user"));
-		// Check user logged in
-//		if (user == null) {
-//			request.setAttribute("error", "No tienes acceso a esta p�gina, logeate.");
-//			request.getRequestDispatcher("/message.jsp").forward(request, response);
-//			return;
-//
-//		}
+
 		// get email/pass from form
 		String key = request.getParameter("key");
 		String value = request.getParameter("value");
