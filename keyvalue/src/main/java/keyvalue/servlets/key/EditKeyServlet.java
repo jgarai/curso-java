@@ -59,17 +59,16 @@ public class EditKeyServlet extends HttpServlet {
 			key.setValue(keyValueReq);
 			// store update set in database
 			Config.daoKey.update(key);
-			request.setAttribute("message", "La key ha sido actualizado.");
+			request.setAttribute("message", "La key ha sido actualizada.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 
 		} catch (NumberFormatException e) {
 
-			e.printStackTrace();
-			throw new RuntimeException(e);
+			request.setAttribute("error", "Parametro no válido.");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
 		} catch (JdbcException e) {
-			e.printStackTrace();
-			// throw new RuntimeException(e);
-			request.setAttribute("error", "El set no ha podido ser actualizado.");
+
+			request.setAttribute("error", "La key no ha podido ser actualizada.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 
 		}

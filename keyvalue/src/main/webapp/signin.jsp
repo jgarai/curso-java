@@ -11,9 +11,7 @@
 	margin: auto;
 }
 </style>
-
 <div class="container">
-
 	<h3>Sign in</h3>
 	<div class="form-signin">
 		<c:if test="${error != null}">
@@ -23,9 +21,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="alert"
 					aria-label="Close"></button>
 			</div>
-
 		</c:if>
-
 		<form action="signin" method="post">
 			<div class="form-floating">
 				<input type="email" class="form-control" id="email"
@@ -39,15 +35,9 @@
 					for="password">Password</label>
 			</div>
 			<br>
-
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Sign
 				in</button>
 		</form>
-
-
 	</div>
-
 </div>
-
-
 <%@ include file="/includes/footer.jspf"%>

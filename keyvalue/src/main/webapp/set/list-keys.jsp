@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ include file="/includes/header.jspf"%>
 <div class="container">
 	<h3>List Keys</h3>
@@ -28,14 +27,11 @@
 						href="set/edit-key?keyid=${key.id}" role="button"> edit</a> <a
 						class="btn btn-danger btn-sm" data-bs-toggle="modal"
 						data-bs-target="#delete-modal" href="set/delete-key?keyid=${key.id}" role="button">delete</a></td>
-
 				</tr>
-
 			</c:forEach>
 		</tbody>
 	</table>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="delete-modal" data-bs-backdrop="static"
 	data-bs-keyboard="false" tabindex="-1"
@@ -57,7 +53,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
 	var confirmDelete = document.getElementById('delete-modal')
 	confirmDelete.addEventListener('show.bs.modal', function(event) {
@@ -67,5 +62,4 @@
 		a.href = href;
 	})
 </script>
-
 <%@ include file="/includes/footer.jspf"%>

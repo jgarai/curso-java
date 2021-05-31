@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ include file="/includes/header.jspf"%>
-
 <style type="text/css" scoped>
 .form-signin {
 	width: 100%;
@@ -11,9 +9,7 @@
 	margin: auto;
 }
 </style>
-
 <div class="container">
-
 	<h3>New Set</h3>
 	<div class="form-signin">
 	<c:if test="${error != null}">
@@ -23,9 +19,7 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert"
 				aria-label="Close"></button>
 		</div>
-
 	</c:if>
-
 	<form action="set/add-set" method="post">
 		<div class="form-floating">
 			<input type="text" class="form-control" id="setname"
@@ -39,11 +33,8 @@
 				for="password">Description</label>
 		</div>
 		<br>
-
 		<button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
 	</form>
 	</div>
-
 </div>
-
 <%@ include file="/includes/footer.jspf"%>

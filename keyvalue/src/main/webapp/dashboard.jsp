@@ -53,7 +53,6 @@
 				</form>
 			</div>
 		</div>
-
 		<div class="tab-pane fade" id="nav-profile" role="tabpanel"
 			aria-labelledby="nav-profile-tab">
 			<div class="form-signin">
@@ -66,7 +65,6 @@
 				</form>
 			</div>
 		</div>
-
 		<div class="tab-pane fade" id="nav-contact" role="tabpanel"
 			aria-labelledby="nav-contact-tab">
 			<div class="form-signin">
@@ -81,10 +79,6 @@
 				</form>
 			</div>
 		</div>
-		<div>${user.email }|${user.email }|${user.email }|${user }</div>
 	</div>
 </div>
-
-
-
 <%@ include file="/includes/footer.jspf"%>

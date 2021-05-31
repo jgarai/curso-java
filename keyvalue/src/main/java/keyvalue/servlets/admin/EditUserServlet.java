@@ -33,11 +33,11 @@ public class EditUserServlet extends HttpServlet {
 			request.getRequestDispatcher("/admin/edit-user.jsp").forward(request, response);
 
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
+			request.setAttribute("error", "Parametro no válido.");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
 		} catch (JdbcException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
+			request.setAttribute("error", "El usuario no ha podido ser actualizado.");
+			request.getRequestDispatcher("/message.jsp").forward(request, response);
 
 		}
 

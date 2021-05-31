@@ -29,35 +29,34 @@
 
 		</c:if>
 
-		<form action="/admin/edit-user" method="post">
+		<form action="admin/edit-user" method="post" autocomplete="off">
 
 			<input type="hidden" class="form-control" id="id" name="id"
 				value="${user.id }" />
 			<div class="form-floating">
 				<input type="email" class="form-control" id="email"
-					placeholder="name@example.com" name="email" /> <label
-					for="floatingInput">Email address</label>
+					placeholder="name@example.com" name="email" value="${user.email }" />
+				<label for="floatingInput">Email address</label>
 			</div>
 			<br>
 			<div class="form-floating">
 				<input type="password" class="form-control" id="password"
-					placeholder="Password" name="password"> <label
-					for="password">Password</label>
+					placeholder="Password" name="password" value="${user.password }" autocomplete="off">
+				<label for="password">Password</label>
 			</div>
 			<br>
 			<div class="form-floating">
 				<input type="text" class="form-control" id="name" placeholder="name"
-					name="name"> <label for="name">Name</label>
+					name="name" value="${user.name }"> <label for="name">Name</label>
 			</div>
 			<br>
 			<div class="form-floating">
 				<input type="text" class="form-control" id="rol" placeholder="rol"
-					name="rol"> <label for="rol">Rol</label>
+					name="rol" value="${user.rol }"> <label for="rol">Rol</label>
 			</div>
 			<br>
 
-			<button class="w-100 btn btn-lg btn-primary" type="submit">Sign
-				in</button>
+			<button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
 		</form>
 	</div>
 

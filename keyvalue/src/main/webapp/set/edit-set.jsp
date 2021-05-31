@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ include file="/includes/header.jspf"%>
-
 <style type="text/css" scoped>
 .form-signin {
 	width: 100%;
@@ -11,9 +9,7 @@
 	margin: auto;
 }
 </style>
-
 <div class="container">
-
 	<h3>Edit Set</h3>
 	<div class="form-signin">
 		<c:if test="${error != null}">
@@ -24,7 +20,6 @@
 					aria-label="Close"></button>
 			</div>
 		</c:if>
-
 		<form action="set/edit-set" method="post">
 			<input type="hidden" id="setid" name="setid" value="${setid }" />
 			<div class="form-floating">
@@ -42,7 +37,5 @@
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
 		</form>
 	</div>
-
 </div>
-
 <%@ include file="/includes/footer.jspf"%>
