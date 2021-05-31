@@ -7,7 +7,7 @@
 	<h3>Admin - Users</h3>
 
 	<table class="table">
-		<caption>List Users</caption>
+		<caption>List of Users</caption>
 
 		<thead class="table-light">
 			<tr>
