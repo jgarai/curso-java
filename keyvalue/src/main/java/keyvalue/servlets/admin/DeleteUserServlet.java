@@ -14,7 +14,7 @@ import com.eskura21.libraries.beginnersjdbc.JdbcException;
 import keyvalue.dao.config.Config;
 import keyvalue.model.User;
 
-@WebServlet("/admin/user/delete")
+@WebServlet("/admin/delete-user")
 public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

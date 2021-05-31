@@ -33,9 +33,9 @@
 					<td >${user.rol}</td>
 					<td >${user.dateTime()}</td>
 					<td >
-					<a class="btn btn-primary btn-sm" href="admin/user/edit?id=${user.id}" role="button"> edit </a>
+					<a class="btn btn-primary btn-sm" href="admin/edit-user?id=${user.id}" role="button"> edit </a>
 					<a class="btn btn-danger btn-sm" data-bs-toggle="modal"
-						data-bs-target="#delete-modal" href="admin/user/delete?id=${user.id}" role="button">delete</a>
+						data-bs-target="#delete-modal" href="admin/delete-user?id=${user.id}" role="button">delete</a>
 					</td>
 		
 				</tr>
