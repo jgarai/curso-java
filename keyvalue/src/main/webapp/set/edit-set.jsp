@@ -14,34 +14,33 @@
 
 <div class="container">
 
-	<h3>New Set</h3>
+	<h3>Edit Set</h3>
 	<div class="form-signin">
-	<c:if test="${error != null}">
-		<div class="alert alert-warning alert-dismissible fade show"
-			role="alert">
-			${error }
-			<button type="button" class="btn-close" data-bs-dismiss="alert"
-				aria-label="Close"></button>
-		</div>
+		<c:if test="${error != null}">
+			<div class="alert alert-warning alert-dismissible fade show"
+				role="alert">
+				${error }
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+					aria-label="Close"></button>
+			</div>
+		</c:if>
 
-	</c:if>
-
-	<form action="set/newset" method="post">
-		<div class="form-floating">
-			<input type="text" class="form-control" id="setname"
-				placeholder="" name="setname" /> <label
-				for="floatingInput">Set's name</label>
-		</div>
-		<br>
-		<div class="form-floating">
-			<input type="text" class="form-control" id="setdescription"
-				placeholder="" name="setdescription"> <label
-				for="password">Description</label>
-		</div>
-		<br>
-
-		<button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
-	</form>
+		<form action="set/edit-set" method="post">
+			<input type="hidden" id="setid" name="setid" value="${setid }" />
+			<div class="form-floating">
+				<input type="text" class="form-control" id="setname" placeholder=""
+					name="setname" value="${set.name }" /> <label for="floatingInput">Set's
+					name</label>
+			</div>
+			<br>
+			<div class="form-floating">
+				<input type="text" class="form-control" id="setdescription"
+					placeholder="" name="setdescription" value="${set.description }">
+				<label for="password">Description</label>
+			</div>
+			<br>
+			<button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
+		</form>
 	</div>
 
 </div>
