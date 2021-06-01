@@ -49,7 +49,7 @@ public class SigninServlet extends HttpServlet {
 			} else {
 				// if password does not match move again to sign in with an error msg
 				request.setAttribute("error", "Usuario o contraseña incorrectos");
-				request.getRequestDispatcher("/signin.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/root.jsp").forward(request, response);
 			}
 
 		} catch (JdbcException e) {

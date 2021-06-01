@@ -28,9 +28,7 @@ public class RootServlet extends HttpServlet {
 		entityManager.getTransaction().begin();
 
 		List<Cliente> clientes = entityManager.createQuery("from Cliente", Cliente.class).getResultList();
-		for (Cliente cliente : clientes) {
-			System.out.println(cliente);
-		}
+
 		request.setAttribute("clientes", clientes);
 		entityManager.getTransaction().commit();
 		entityManager.close();
