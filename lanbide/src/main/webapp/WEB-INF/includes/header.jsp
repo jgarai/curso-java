@@ -27,8 +27,7 @@
 			<div class="col-md-5 text-end">
 				<a class="btn btn-primary btn-sm" data-bs-toggle="modal"
 					data-bs-target="#nuevo-cliente"
-					href="nuevocliente" role="button">Nuevo
-					Cliente</a>
+					href="crearcliente" role="button">Crear	Cliente</a>
 
 			</div>
 		</header>
@@ -44,34 +43,34 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="" method="post">
+        <form action="crearcliente" method="post">
 				  <div class="mb-3">
 				    <label for="nombre" class="form-label">Nombre</label>
-				    <input type="text" class="form-control" id="nombre">
+				    <input type="text" class="form-control" id="nombre" name="nombre">
 				  </div>
 				  <div class="mb-3">
 				    <label for="apellido" class="form-label">Apellido</label>
-				    <input type="text" class="form-control" id="apellido">
+				    <input type="text" class="form-control" id="apellido" name="apellido">
 				  </div>
 				  <div class="mb-3">
 				    <label for="telefono" class="form-label">Teléfono</label>
-				    <input type="text" class="form-control" id="telefono">
+				    <input type="text" class="form-control" id="telefono" name="telefono">
 				  </div>
 				  <div class="mb-3">
-				    <label for="email" class="form-label">Email address</label>
-				    <input type="email" class="form-control" id="email" >
+				    <label for="email" class="form-label">Correo electrónico</label>
+				    <input type="email" class="form-control" id="email" name="email" >
 			
 				  </div>
 				  <div class="mb-3">
 				    <label for="saldo" class="form-label">Saldo</label>
-				    <input type="number" class="form-control" id="saldo">
+				    <input type="text" class="form-control" id="saldo" name="saldo">
 				  </div>
 		
 			
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
 					</form>
 				</div>
     </div>

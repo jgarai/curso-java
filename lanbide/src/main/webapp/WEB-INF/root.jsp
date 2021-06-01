@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/includes/header.jsp"%>
 <div class="container">
-	<h3>Clientes</h3>
+	<h3 class="display-6">Clientes</h3>
 	<c:choose>
 		<c:when test="${mensaje != null}">
 			<div class="alert alert-info alert-dismissible fade show"
@@ -28,13 +28,13 @@
 		</c:otherwise>
 	</c:choose>
 
-	<table class="table table-striped table-sm">
+	<table class="table table-striped table-sm ">
 		<caption>Lista de clientes</caption>
 		<thead class="table-light">
 			<tr>
 				<th class="col-1">Id</th>
 				<th class="col-1">Nombre</th>
-				<th class="col-1">Apellido</th>
+				<th class="col-2">Apellido</th>
 				<th class="col-1">Telefono</th>
 				<th class="col-1">eMail</th>
 				<th class="col-1">Saldo</th>
@@ -51,8 +51,6 @@
 					<td>${cliente.email}</td>
 					<td>${cliente.saldo}</td>
 					<td><a class="btn btn-primary btn-sm" href="" role="button">Editar</a>
-
-
 						<a class="btn btn-danger btn-sm" data-bs-toggle="modal"
 						data-bs-target="#delete-modal"
 						href="borrarcliente?clienteid=${cliente.id}" role="button">Borrar</a>

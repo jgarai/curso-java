@@ -39,7 +39,7 @@ public class BorrarClienteServlet extends HttpServlet {
 			}
 			entityManager.getTransaction().commit();
 			entityManager.close();
-			System.out.println(clienteId);
+
 			
 			request.setAttribute("mensaje", "La ficha del cliente ha sido borrada con éxito.");
 			request.getRequestDispatcher("/").forward(request, response);
