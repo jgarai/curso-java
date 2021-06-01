@@ -21,7 +21,7 @@ public class ServerStartListener implements ServletContextListener {
 	}
 
 	public void contextInitialized(ServletContextEvent sce) {
-//		String pathSqlite = sce.getServletContext().getRealPath("/db.sqlite3");
+//		String pathSqlite = sce.getServletContext().getRealPath("/lanbide.sqlite3");
 //		System.out.println(pathSqlite);
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("lanbide");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
