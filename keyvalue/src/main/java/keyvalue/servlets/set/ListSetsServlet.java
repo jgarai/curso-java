@@ -22,21 +22,16 @@ public class ListSetsServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
-
 		try {
 			// show user's sets
-
 			List<Myset> sets = Config.daoSet.selectAllByField("owner_id", user.getId());
-
 			request.setAttribute("sets", sets);
 			request.getRequestDispatcher("/set/list-sets.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-
 		}
 	}
 

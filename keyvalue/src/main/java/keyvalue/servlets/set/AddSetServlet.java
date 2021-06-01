@@ -28,27 +28,22 @@ public class AddSetServlet extends HttpServlet {
 
 		try {
 			// fetch user's sets. The numbers of sets should be less than 10
-
 			List<Myset> sets = Config.daoSet.selectAllByField("owner_id", user.getId());
-
 			if (sets != null && sets.size() <= 8) {
-
 				request.getRequestDispatcher("/set/add-set.jsp").forward(request, response);
 			} else {
 				request.setAttribute("error", "El numero maximo de sets por usuario es 10.");
 				request.getRequestDispatcher("/message.jsp").forward(request, response);
-
 			}
 		} catch (JdbcException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		HttpSession session = (HttpSession) request.getSession();
 		User user = ((User) session.getAttribute("user"));
 
@@ -59,16 +54,12 @@ public class AddSetServlet extends HttpServlet {
 			// insert into database
 			Myset set = new Myset(null, user.getId(), setName, setDescription);
 			Config.daoSet.insert(set);
-
 			request.setAttribute("message", "El set ha sido creado con éxito.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 		} catch (JdbcException e) {
 			e.printStackTrace();
 			request.setAttribute("error", "Error insertando el set");
 			request.getRequestDispatcher("/set/add-set.jsp").forward(request, response);
-
 		}
-
 	}
-
 }

@@ -7,12 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.eskura21.libraries.beginnersjdbc.JdbcException;
 
 import keyvalue.dao.config.Config;
-import keyvalue.model.User;
 
 @WebServlet("/set/delete-set")
 public class DeleteSetServlet extends HttpServlet {
@@ -20,15 +18,7 @@ public class DeleteSetServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = (HttpSession) request.getSession();
-		User user = ((User) session.getAttribute("user"));
-		// Check user logged in
-//		if (user == null) {
-//			request.setAttribute("error", "No tienes acceso a esta página, logeate.");
-//			request.getRequestDispatcher("/message.jsp").forward(request, response);
-//			return;
-//
-//		}
+
 		String setId = request.getParameter("setid");
 		try {
 			Config.daoSet.delete(Integer.parseInt(setId));
@@ -42,7 +32,6 @@ public class DeleteSetServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			request.setAttribute("error", "El parametro no es correcto borrando el set.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
-
 		}
 	}
 

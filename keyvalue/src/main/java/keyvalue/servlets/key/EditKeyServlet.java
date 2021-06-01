@@ -45,6 +45,7 @@ public class EditKeyServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 
 		try {
 
@@ -64,7 +65,7 @@ public class EditKeyServlet extends HttpServlet {
 
 		} catch (NumberFormatException e) {
 
-			request.setAttribute("error", "Parametro no v√°lido.");
+			request.setAttribute("error", "Parametro no v·lido.");
 			request.getRequestDispatcher("/message.jsp").forward(request, response);
 		} catch (JdbcException e) {
 

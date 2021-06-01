@@ -21,13 +21,12 @@ public class SigninServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.sendRedirect("signin.jsp");
 		request.getRequestDispatcher("/signin.jsp").forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		// get data from request
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -54,7 +53,6 @@ public class SigninServlet extends HttpServlet {
 			}
 
 		} catch (JdbcException e) {
-			System.out.println(e);
 			request.setAttribute("error", "Usuario o contrase�a incorrectos");
 			request.getRequestDispatcher("/signin.jsp").forward(request, response);
 		}

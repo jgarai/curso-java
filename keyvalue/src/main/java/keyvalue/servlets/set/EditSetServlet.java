@@ -19,16 +19,11 @@ public class EditSetServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		HttpSession session = (HttpSession) request.getSession();
-//		User user = ((User) session.getAttribute("user"));
-
 		try {
 			// get set id
 			String setIdReq = (String) request.getParameter("setid");
 			Integer setId = Integer.parseInt(setIdReq);
-
 			// get set properties from database
-
 			Myset set = Config.daoSet.selectById(setId);
 			// generate form with properties
 			request.setAttribute("setid", setId);
@@ -48,6 +43,7 @@ public class EditSetServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 
 		try {
 

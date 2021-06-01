@@ -14,7 +14,7 @@ public class MessageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		response.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("/message.jsp").forward(request, response);
 
 	}

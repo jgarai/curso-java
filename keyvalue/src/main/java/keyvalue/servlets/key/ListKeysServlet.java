@@ -8,13 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.eskura21.libraries.beginnersjdbc.JdbcException;
 
 import keyvalue.dao.config.Config;
 import keyvalue.model.Key;
-import keyvalue.model.User;
 
 @WebServlet("/set/list-keys")
 public class ListKeysServlet extends HttpServlet {
@@ -22,15 +20,6 @@ public class ListKeysServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = (HttpSession) request.getSession();
-		User user = ((User) session.getAttribute("user"));
-		// Check user logged in
-//		if (user == null) {
-//			request.setAttribute("error", "No tienes acceso a esta página, logeate.");
-//			request.getRequestDispatcher("/message.jsp").forward(request, response);
-//			return;
-//
-//		}
 
 		String setid = request.getParameter("setid");
 		try {
