@@ -20,13 +20,49 @@ public class CrearClienteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/crear-cliente.jsp").forward(request, response);
+		String clienteIdReq = request.getParameter("clienteid");
+
+		// Si no se acompaña con un id es una creaccion de nueva ficha de cliente
+		if (clienteIdReq == null || clienteIdReq.length() == 0) {
+			request.getRequestDispatcher("/WEB-INF/crear-cliente.jsp").forward(request, response);
+			return;
+
+		}
+		/*
+		 * En caso de que si haya un id de cliente es un update pedimos a jpa el objeto
+		 * del cliente y lo envíamos a la jsp donde se muestra el formulario del para
+		 * meter los datos a actualizar.
+		 */
+		try {
+			Long clienteId = Long.parseLong(clienteIdReq);
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("lanbide");
+
+			EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+			entityManager.getTransaction().begin();
+
+			Cliente cliente = entityManager.find(Cliente.class, clienteId);
+
+			request.setAttribute("cliente", cliente);
+
+			entityManager.getTransaction().commit();
+			entityManager.close();
+			request.getRequestDispatcher("/WEB-INF/crear-cliente.jsp").forward(request, response);
+		} catch (NumberFormatException e) {
+
+			e.printStackTrace();
+		}
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
+
+		String clienteIdReq = request.getParameter("clienteid");
+		if (clienteIdReq == null || clienteIdReq.length() == 0) {
+		}
+
 		try {
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");

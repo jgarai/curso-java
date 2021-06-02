@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/includes/header.jsp"%>
 <style type="text/css" scoped>
-.form-signin {
+.form-crear-cliente {
 	width: 100%;
 	max-width: 430px;
 	padding: 15px;
@@ -35,7 +35,7 @@
 		<c:otherwise>
 		</c:otherwise>
 	</c:choose>
-	<div class="form-signin">
+	<div class="form-crear-cliente">
 		<form action="crearcliente" method="post">
 			<input type="hidden" class="form-control" id="id" name="clienteid"
 				value="${cliente.id}">
