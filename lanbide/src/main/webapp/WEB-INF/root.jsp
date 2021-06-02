@@ -50,7 +50,7 @@
 					<td>${cliente.telefono}</td>
 					<td>${cliente.email}</td>
 					<td>${cliente.saldo}</td>
-					<td><a class="btn btn-primary btn-sm" href="" role="button">Editar</a>
+					<td><a class="btn btn-primary btn-sm" href="editarcliente?clienteid=${cliente.id}" role="button">Editar</a>
 						<a class="btn btn-danger btn-sm" data-bs-toggle="modal"
 						data-bs-target="#delete-modal"
 						href="borrarcliente?clienteid=${cliente.id}" role="button">Borrar</a>

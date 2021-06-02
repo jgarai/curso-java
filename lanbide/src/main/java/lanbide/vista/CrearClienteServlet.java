@@ -20,17 +20,20 @@ public class CrearClienteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/crear-cliente.jsp").forward(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		try {
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
 			String telefono = request.getParameter("telefono");
 			String email = request.getParameter("email");
 			BigDecimal saldo = new BigDecimal(request.getParameter("saldo"));
+
 			if (nombre == null || apellido == null || telefono == null || email == null || saldo == null) {
 
 			}
@@ -39,22 +42,23 @@ public class CrearClienteServlet extends HttpServlet {
 
 			EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-			entityManager = entityManagerFactory.createEntityManager();
 			entityManager.getTransaction().begin();
 
 			Cliente cliente = new Cliente(null, nombre, apellido, telefono, email, saldo);
-			entityManager.persist(cliente);
+			// request.setAttribute("cliente", cliente);
 
+			entityManager.persist(cliente);
 			entityManager.getTransaction().commit();
 			entityManager.close();
-			request.setAttribute("mensaje",
-					"La ficha del cliente ha sido creada con Ã©xito.");
+
+			request.setAttribute("mensaje", "La ficha del cliente ha sido creada con éxito.");
 			request.getRequestDispatcher("/").forward(request, response);
 		} catch (Exception e) {
 
 			e.printStackTrace();
 			request.setAttribute("error", "Ha habido un error tratando de crear la ficha del cliente.");
-			request.getRequestDispatcher("/").forward(request, response);
+
+			request.getRequestDispatcher("crearcliente").forward(request, response);
 		}
 
 	}

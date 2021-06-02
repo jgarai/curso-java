@@ -16,13 +16,13 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, length = 50)
+	@Column(length = 50)
 	private String nombre;
-	@Column(nullable = false, length = 50)
+	@Column(length = 50)
 	private String apellido;
-	@Column(nullable = false, length = 50)
+	@Column(length = 50)
 	private String telefono;
-	@Column(nullable = false, length = 50)
+	@Column(length = 50)
 	private String email;
 	@Column(precision = 12, scale = 2)
 	private BigDecimal saldo;

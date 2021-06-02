@@ -20,6 +20,8 @@ public class RootServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("lanbide");
 
 		EntityManager entityManager = entityManagerFactory.createEntityManager();

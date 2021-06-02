@@ -13,17 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import lanbide.modelo.Cliente;
 
-
 @WebServlet("/borrarcliente")
 public class BorrarClienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	try {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
 			String clienteIdReq = request.getParameter("clienteid");
 			Long clienteId = Long.parseLong(clienteIdReq);
-			
+
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("lanbide");
 
 			EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -33,15 +32,14 @@ public class BorrarClienteServlet extends HttpServlet {
 
 			Cliente cliente = entityManager.find(Cliente.class, clienteId);
 
-			if(cliente != null){
-				
+			if (cliente != null) {
+
 				entityManager.remove(cliente);
 			}
 			entityManager.getTransaction().commit();
 			entityManager.close();
 
-			
-			request.setAttribute("mensaje", "La ficha del cliente ha sido borrada con Ã©xito.");
+			request.setAttribute("mensaje", "La ficha del cliente ha sido borrada con éxito.");
 			request.getRequestDispatcher("/").forward(request, response);
 		} catch (NumberFormatException e) {
 			request.setAttribute("error", "Ha habido un error tratando de borrar la ficha del cliente.");
@@ -54,12 +52,11 @@ public class BorrarClienteServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-	
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 
