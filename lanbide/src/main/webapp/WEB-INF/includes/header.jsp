@@ -17,7 +17,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 	rel="stylesheet" />
-	
+
 <base href="${pageContext.request.contextPath}/" />
 
 
@@ -27,14 +27,13 @@
 		<header
 			class="d-flex flex-wrap  justify-content-md-between py-3 mb-4 border-bottom">
 			<ul class="nav col-12 col-md-auto mb-2  mb-md-0">
-				<li><a href="" class="nav-link px-2 link-secondary"><i class="fas fa-home"></i> Inicio</a></li>
+				<li><a href="" class="nav-link px-2 link-secondary"><i
+						class="fas fa-home"></i> Inicio</a></li>
 			</ul>
 			<div class="col-md-5 text-end">
-				<a class="btn btn-primary btn-sm" 
-					href="crearcliente" role="button"><i class="fas fa-user-plus"></i> Crear Cliente</a>
+				<a class="btn btn-primary btn-sm" href="crearcliente" role="button"><i
+					class="fas fa-user-plus"></i> Crear Cliente</a>
 
 			</div>
 		</header>
 	</div>
-	
-

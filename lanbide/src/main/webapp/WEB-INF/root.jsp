@@ -6,7 +6,8 @@
 	<c:choose>
 		<c:when test="${mensaje != null}">
 			<div class="alert alert-info alert-dismissible fade show"
-				role="alert"><i class="fas fa-check-square"></i> ${mensaje }
+				role="alert">
+				<i class="fas fa-check-square"></i> ${mensaje }
 				<button type="button" class="btn-close" data-bs-dismiss="alert"
 					aria-label="Close"></button>
 			</div>
@@ -17,7 +18,8 @@
 	<c:choose>
 		<c:when test="${error != null}">
 			<div class="alert alert-danger alert-dismissible fade show"
-				role="alert"><i class="fas fa-exclamation-triangle"></i> ${error }
+				role="alert">
+				<i class="fas fa-exclamation-triangle"></i> ${error }
 				<button type="button" class="btn-close" data-bs-dismiss="alert"
 					aria-label="Close"></button>
 			</div>
@@ -34,7 +36,7 @@
 				<th class="col-2">Apellido</th>
 				<th class="col-1">Teléfono</th>
 				<th class="col-1">eMail</th>
-				<th class="col-1">Saldo</th>
+				<th class="col-1" style="text-align: center">Saldo</th>
 				<th class="col-2" style="text-align: center">Opciones</th>
 			</tr>
 		</thead>
@@ -47,13 +49,14 @@
 					<td>${cliente.telefono}</td>
 					<td>${cliente.email}</td>
 					<td style="text-align: right">${cliente.saldo}</td>
-					<td style="text-align: right"><a class="btn btn-primary btn-sm"
-						href="crearcliente?clienteid=${cliente.id}" role="button"
-						><i class="fas fa-user-edit"></i> Editar</a> 
-						<a 	class="btn btn-danger btn-sm" data-bs-toggle="modal"
+					<td style="text-align: right"><a
+						class="btn btn-primary btn-sm"
+						href="crearcliente?clienteid=${cliente.id}" role="button"><i
+							class="fas fa-user-edit"></i> Editar</a> <a
+						class="btn btn-danger btn-sm" data-bs-toggle="modal"
 						data-bs-target="#delete-modal"
 						href="borrarcliente?clienteid=${cliente.id}" role="button"><i
-							class="fas fa-user-slash" ></i> Borrar</a></td>
+							class="fas fa-user-slash"></i> Borrar</a></td>
 				</tr>
 
 			</c:forEach>
@@ -75,8 +78,11 @@
 					borrada de la base de datos</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
-					<a href="#" type="button" class="btn btn-danger"><i class="fas fa-user-slash"></i> Borrar</a>
+						data-bs-dismiss="modal">
+						<i class="fas fa-times"></i> Cerrar
+					</button>
+					<a href="#" type="button" class="btn btn-danger"><i
+						class="fas fa-user-slash"></i> Borrar</a>
 				</div>
 			</div>
 		</div>
@@ -96,4 +102,5 @@
 		})
 	</script>
 </div>
+
 <%@ include file="/WEB-INF/includes/footer.jsp"%>

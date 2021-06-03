@@ -76,7 +76,7 @@ public class CrearClienteServlet extends HttpServlet {
 
 			entityManager.getTransaction().begin();
 
-			// Si no hay id es crear una ficha nueva de cliente
+			// Si no hay clienteid es crear una ficha nueva de cliente
 			String clienteIdReq = request.getParameter("clienteid");
 			if (clienteIdReq == null || clienteIdReq.length() == 0) {
 				Cliente cliente = new Cliente(null, nombre, apellido, telefono, email, saldo);
@@ -85,7 +85,7 @@ public class CrearClienteServlet extends HttpServlet {
 				request.setAttribute("mensaje", "La ficha del cliente ha sido creada con éxito.");
 
 			}
-			// si hay id es actualizar un cliente
+			// si hay clienteid es actualizar un cliente
 			else {
 
 				Long clienteId = Long.parseLong(clienteIdReq);
