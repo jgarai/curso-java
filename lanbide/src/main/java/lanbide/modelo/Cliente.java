@@ -68,7 +68,7 @@ public class Cliente {
 	}
 
 	public BigDecimal getSaldo() {
-		return saldo;
+		return saldo.setScale(2);
 	}
 
 	public void setSaldo(BigDecimal saldo) {

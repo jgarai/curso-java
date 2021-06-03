@@ -22,7 +22,7 @@ public class CrearClienteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String clienteIdReq = request.getParameter("clienteid");
 
-		// Si no se acompaña con un id es una creaccion de nueva ficha de cliente
+		// Si no se acompaï¿½a con un id es una creaccion de nueva ficha de cliente
 		if (clienteIdReq == null || clienteIdReq.length() == 0) {
 			request.getRequestDispatcher("/WEB-INF/crear-cliente.jsp").forward(request, response);
 			return;
@@ -30,7 +30,7 @@ public class CrearClienteServlet extends HttpServlet {
 		}
 		/*
 		 * En caso de que si haya un id de cliente es un update pedimos a jpa el objeto
-		 * del cliente y lo envíamos a la jsp donde se muestra el formulario para meter
+		 * del cliente y lo envï¿½amos a la jsp donde se muestra el formulario para meter
 		 * los datos a actualizar.
 		 */
 		try {
@@ -69,6 +69,7 @@ public class CrearClienteServlet extends HttpServlet {
 			String telefono = request.getParameter("telefono");
 			String email = request.getParameter("email");
 			BigDecimal saldo = new BigDecimal(request.getParameter("saldo"));
+	
 
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("lanbide");
 
@@ -82,7 +83,7 @@ public class CrearClienteServlet extends HttpServlet {
 				Cliente cliente = new Cliente(null, nombre, apellido, telefono, email, saldo);
 
 				entityManager.persist(cliente);
-				request.setAttribute("mensaje", "La ficha del cliente ha sido creada con éxito.");
+				request.setAttribute("mensaje", "La ficha del cliente ha sido creada con ï¿½xito.");
 
 			}
 			// si hay clienteid es actualizar un cliente
@@ -96,7 +97,7 @@ public class CrearClienteServlet extends HttpServlet {
 				cliente.setTelefono(request.getParameter("telefono"));
 				cliente.setEmail(request.getParameter("email"));
 				cliente.setSaldo(new BigDecimal(request.getParameter("saldo")));
-				request.setAttribute("mensaje", "La ficha del cliente ha sido editada con éxito.");
+				request.setAttribute("mensaje", "La ficha del cliente ha sido editada con ï¿½xito.");
 
 			}
 
