@@ -10,7 +10,7 @@
 }
 </style>
 <div class="container">
-	<h3 class="display-6">Crear Cliente</h3>
+	<h3 class="display-8">Cliente</h3>
 	<c:choose>
 		<c:when test="${mensaje != null}">
 			<div class="alert alert-info alert-dismissible fade show"
@@ -36,7 +36,7 @@
 		</c:otherwise>
 	</c:choose>
 	<div class="form-crear-cliente">
-		<form action="crearcliente" method="post">
+		<form action="crearcliente" method="post" autocomplete="off">
 			<input type="hidden" class="form-control" id="id" name="clienteid"
 				value="${cliente.id}">
 			<div class="mb-2">
@@ -61,12 +61,12 @@
 			</div>
 			<div class="mb-2">
 				<label for="saldo" class="form-label">Saldo</label> <input
-					type="text" class="form-control" id="saldo" name="saldo"
+					type="number" step="0.01" class="form-control" id="saldo" name="saldo"
 					value="${cliente.saldo}">
 			</div>
 			<button type="button" class="btn btn-secondary"
-				data-bs-dismiss="modal">Cancelar</button>
-			<button type="submit" class="btn btn-primary">Enviar</button>
+				data-bs-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+			<button type="submit" class="btn btn-primary"><i class="fas fa-share-square"></i> Enviar</button>
 		</form>
 	</div>
 

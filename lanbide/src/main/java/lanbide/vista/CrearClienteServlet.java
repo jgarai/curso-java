@@ -30,8 +30,8 @@ public class CrearClienteServlet extends HttpServlet {
 		}
 		/*
 		 * En caso de que si haya un id de cliente es un update pedimos a jpa el objeto
-		 * del cliente y lo envíamos a la jsp donde se muestra el formulario del para
-		 * meter los datos a actualizar.
+		 * del cliente y lo envíamos a la jsp donde se muestra el formulario para meter
+		 * los datos a actualizar.
 		 */
 		try {
 			Long clienteId = Long.parseLong(clienteIdReq);
@@ -47,10 +47,14 @@ public class CrearClienteServlet extends HttpServlet {
 
 			entityManager.getTransaction().commit();
 			entityManager.close();
+			entityManagerFactory.close();
 			request.getRequestDispatcher("/WEB-INF/crear-cliente.jsp").forward(request, response);
-		} catch (NumberFormatException e) {
+
+		} catch (Exception e) {
 
 			e.printStackTrace();
+			request.setAttribute("error", "Ha habido un error tratando de crear la ficha del cliente.");
+			request.getRequestDispatcher("/").forward(request, response);
 		}
 
 	}
@@ -59,10 +63,6 @@ public class CrearClienteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 
-		String clienteIdReq = request.getParameter("clienteid");
-		if (clienteIdReq == null || clienteIdReq.length() == 0) {
-		}
-
 		try {
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
@@ -70,31 +70,48 @@ public class CrearClienteServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			BigDecimal saldo = new BigDecimal(request.getParameter("saldo"));
 
-			if (nombre == null || apellido == null || telefono == null || email == null || saldo == null) {
-
-			}
-
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("lanbide");
 
 			EntityManager entityManager = entityManagerFactory.createEntityManager();
 
 			entityManager.getTransaction().begin();
 
-			Cliente cliente = new Cliente(null, nombre, apellido, telefono, email, saldo);
-			// request.setAttribute("cliente", cliente);
+			// Si no hay id es crear una ficha nueva de cliente
+			String clienteIdReq = request.getParameter("clienteid");
+			if (clienteIdReq == null || clienteIdReq.length() == 0) {
+				Cliente cliente = new Cliente(null, nombre, apellido, telefono, email, saldo);
 
-			entityManager.persist(cliente);
+				entityManager.persist(cliente);
+				request.setAttribute("mensaje", "La ficha del cliente ha sido creada con éxito.");
+
+			}
+			// si hay id es actualizar un cliente
+			else {
+
+				Long clienteId = Long.parseLong(clienteIdReq);
+				Cliente cliente = entityManager.find(Cliente.class, clienteId);
+
+				cliente.setNombre(request.getParameter("nombre"));
+				cliente.setApellido(request.getParameter("apellido"));
+				cliente.setTelefono(request.getParameter("telefono"));
+				cliente.setEmail(request.getParameter("email"));
+				cliente.setSaldo(new BigDecimal(request.getParameter("saldo")));
+				request.setAttribute("mensaje", "La ficha del cliente ha sido editada con éxito.");
+
+			}
+
 			entityManager.getTransaction().commit();
 			entityManager.close();
+			entityManagerFactory.close();
 
-			request.setAttribute("mensaje", "La ficha del cliente ha sido creada con éxito.");
 			request.getRequestDispatcher("/").forward(request, response);
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
 			request.setAttribute("error", "Ha habido un error tratando de crear la ficha del cliente.");
 
-			request.getRequestDispatcher("crearcliente").forward(request, response);
+			request.getRequestDispatcher("/").forward(request, response);
 		}
 
 	}

@@ -38,18 +38,13 @@ public class BorrarClienteServlet extends HttpServlet {
 			}
 			entityManager.getTransaction().commit();
 			entityManager.close();
+			entityManagerFactory.close();
 
 			request.setAttribute("mensaje", "La ficha del cliente ha sido borrada con éxito.");
 			request.getRequestDispatcher("/").forward(request, response);
 		} catch (NumberFormatException e) {
 			request.setAttribute("error", "Ha habido un error tratando de borrar la ficha del cliente.");
 			request.getRequestDispatcher("/").forward(request, response);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}

@@ -2,15 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/includes/header.jsp"%>
 <div class="container">
-	<h3 class="display-6">Clientes</h3>
+	<h3 class="display-8">Clientes</h3>
 	<c:choose>
 		<c:when test="${mensaje != null}">
 			<div class="alert alert-info alert-dismissible fade show"
-				role="alert">${mensaje }
+				role="alert"><i class="fas fa-check-square"></i> ${mensaje }
 				<button type="button" class="btn-close" data-bs-dismiss="alert"
 					aria-label="Close"></button>
 			</div>
-
 		</c:when>
 		<c:otherwise>
 		</c:otherwise>
@@ -18,16 +17,14 @@
 	<c:choose>
 		<c:when test="${error != null}">
 			<div class="alert alert-danger alert-dismissible fade show"
-				role="alert">${error }
+				role="alert"><i class="fas fa-exclamation-triangle"></i> ${error }
 				<button type="button" class="btn-close" data-bs-dismiss="alert"
 					aria-label="Close"></button>
 			</div>
-
 		</c:when>
 		<c:otherwise>
 		</c:otherwise>
 	</c:choose>
-
 	<table class="table table-striped table-sm ">
 		<caption>Lista de clientes</caption>
 		<thead class="table-light">
@@ -35,10 +32,10 @@
 				<th class="col-1">Id</th>
 				<th class="col-1">Nombre</th>
 				<th class="col-2">Apellido</th>
-				<th class="col-1">Telefono</th>
+				<th class="col-1">Teléfono</th>
 				<th class="col-1">eMail</th>
 				<th class="col-1">Saldo</th>
-				<th class="col-1">Opciones</th>
+				<th class="col-2" style="text-align: center">Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,14 +46,16 @@
 					<td>${cliente.apellido}</td>
 					<td>${cliente.telefono}</td>
 					<td>${cliente.email}</td>
-					<td>${cliente.saldo}</td>
-					<td><a class="btn btn-primary btn-sm" href="editarcliente?clienteid=${cliente.id}" role="button">Editar</a>
-						<a class="btn btn-danger btn-sm" data-bs-toggle="modal"
+					<td style="text-align: right">${cliente.saldo}</td>
+					<td style="text-align: right"><a class="btn btn-primary btn-sm"
+						href="crearcliente?clienteid=${cliente.id}" role="button"
+						><i class="fas fa-user-edit"></i> Editar</a> 
+						<a 	class="btn btn-danger btn-sm" data-bs-toggle="modal"
 						data-bs-target="#delete-modal"
-						href="borrarcliente?clienteid=${cliente.id}" role="button">Borrar</a>
-
-					</td>
+						href="borrarcliente?clienteid=${cliente.id}" role="button"><i
+							class="fas fa-user-slash" ></i> Borrar</a></td>
 				</tr>
+
 			</c:forEach>
 		</tbody>
 	</table>
@@ -76,8 +75,8 @@
 					borrada de la base de datos</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">close</button>
-					<a href="#" type="button" class="btn btn-danger">borrar</a>
+						data-bs-dismiss="modal"><i class="fas fa-times"></i> Cerrar</button>
+					<a href="#" type="button" class="btn btn-danger"><i class="fas fa-user-slash"></i> Borrar</a>
 				</div>
 			</div>
 		</div>
@@ -90,8 +89,11 @@
 			var a = confirmDelete.querySelector('.modal-footer a')
 			a.href = href;
 		})
+		var tooltipTriggerList = [].slice.call(document
+				.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+			return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
 	</script>
-</div>
-
 </div>
 <%@ include file="/WEB-INF/includes/footer.jsp"%>

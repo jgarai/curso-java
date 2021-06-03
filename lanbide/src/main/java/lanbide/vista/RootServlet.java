@@ -34,6 +34,7 @@ public class RootServlet extends HttpServlet {
 		request.setAttribute("clientes", clientes);
 		entityManager.getTransaction().commit();
 		entityManager.close();
+		entityManagerFactory.close();
 
 		request.getRequestDispatcher("/WEB-INF/root.jsp").forward(request, response);
 

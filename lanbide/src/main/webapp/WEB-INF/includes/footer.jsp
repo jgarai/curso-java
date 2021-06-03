@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div class="container">
-Prueba para Lanbide / Curso Ipartek de Java JSP y Servlets
+<p>Prueba para Lanbide / jgarai</br>
+IPARTEK: DESARROLLO DE APLICACIONES JAVA: COMPONENTES WEB Y APLICACIONES DE BASE DE DATOS (JSP Y JPA)</p>
 </div>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
@@ -13,8 +14,13 @@ Prueba para Lanbide / Curso Ipartek de Java JSP y Servlets
 
 <script>
 	$(document).ready(function() {
-		$('table').DataTable();
+		$('table').DataTable({
+	        language: {
+	            url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+	        }
+	    } );
 	});
+	
 </script>
 </body>
 </html>
