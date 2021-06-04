@@ -3,7 +3,7 @@
 <div class="container">
 <hr>
 	<p>
-		Prueba para Lanbide / jgarai</br> IPARTEK: DESARROLLO DE APLICACIONES JAVA:
+		Prueba para Lanbide / Jose Maria Garay</br> IPARTEK: DESARROLLO DE APLICACIONES JAVA:
 		COMPONENTES WEB Y APLICACIONES DE BASE DE DATOS (JSP Y JPA)
 	</p>
 </div>

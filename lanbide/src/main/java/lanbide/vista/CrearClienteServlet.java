@@ -30,8 +30,8 @@ public class CrearClienteServlet extends HttpServlet {
 		}
 		/*
 		 * En caso de que si haya un id de cliente es un update pedimos a jpa el objeto
-		 * del cliente y lo envï¿½amos a la jsp donde se muestra el formulario para meter
-		 * los datos a actualizar.
+		 * del cliente y lo envï¿½amos a la jsp donde se muestra el formulario para
+		 * meter los datos a actualizar.
 		 */
 		try {
 			Long clienteId = Long.parseLong(clienteIdReq);
@@ -69,7 +69,6 @@ public class CrearClienteServlet extends HttpServlet {
 			String telefono = request.getParameter("telefono");
 			String email = request.getParameter("email");
 			BigDecimal saldo = new BigDecimal(request.getParameter("saldo"));
-	
 
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("lanbide");
 
@@ -83,7 +82,7 @@ public class CrearClienteServlet extends HttpServlet {
 				Cliente cliente = new Cliente(null, nombre, apellido, telefono, email, saldo);
 
 				entityManager.persist(cliente);
-				request.setAttribute("mensaje", "La ficha del cliente ha sido creada con ï¿½xito.");
+				request.setAttribute("mensaje", "La ficha del cliente ha sido creada con éxito.");
 
 			}
 			// si hay clienteid es actualizar un cliente
@@ -97,7 +96,7 @@ public class CrearClienteServlet extends HttpServlet {
 				cliente.setTelefono(request.getParameter("telefono"));
 				cliente.setEmail(request.getParameter("email"));
 				cliente.setSaldo(new BigDecimal(request.getParameter("saldo")));
-				request.setAttribute("mensaje", "La ficha del cliente ha sido editada con ï¿½xito.");
+				request.setAttribute("mensaje", "La ficha del cliente ha sido editada con éxito.");
 
 			}
 
